@@ -449,202 +449,6 @@ section {
 }
 
 /* ============================================
-   PROLOGUE · 個人前言(手寫信風格)
-   ============================================ */
-.prologue-section {
-  background:
-    linear-gradient(to bottom, var(--paper) 0%, var(--paper-warm) 50%, var(--paper) 100%);
-  position: relative;
-  overflow: hidden;
-}
-.prologue-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 50%, rgba(107, 142, 90, 0.05) 0%, transparent 35%),
-    radial-gradient(circle at 85% 30%, rgba(212, 168, 67, 0.04) 0%, transparent 30%);
-  pointer-events: none;
-}
-
-.prologue-shell {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 80px 32px;
-  position: relative;
-  z-index: 1;
-}
-
-.prologue-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--clay);
-  margin-bottom: 24px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.prologue-eyebrow::before,
-.prologue-eyebrow::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--clay);
-  opacity: 0.4;
-}
-
-.prologue-greeting {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.3;
-  color: var(--ink);
-  margin-bottom: 32px;
-  letter-spacing: -0.01em;
-}
-.prologue-greeting .accent {
-  color: var(--moss);
-}
-
-.prologue-body {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.85;
-  color: var(--ink);
-}
-
-.prologue-body p {
-  margin-bottom: 22px;
-}
-
-.prologue-body p.lead {
-  font-size: 19px;
-  line-height: 1.75;
-}
-
-.prologue-body strong {
-  font-weight: 700;
-  background: linear-gradient(transparent 70%, rgba(212, 168, 67, 0.45) 70%, rgba(212, 168, 67, 0.45) 92%, transparent 92%);
-  padding: 0 2px;
-}
-
-.prologue-body em {
-  font-style: italic;
-  color: var(--moss);
-  font-weight: 600;
-}
-
-/* Decorative pull quote */
-.prologue-pullquote {
-  margin: 36px -20px;
-  padding: 28px 32px;
-  border-left: 4px solid var(--moss);
-  background: rgba(107, 142, 90, 0.06);
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 21px;
-  line-height: 1.55;
-  color: var(--moss-deep);
-  font-weight: 600;
-  border-radius: 0 6px 6px 0;
-  position: relative;
-}
-.prologue-pullquote::before {
-  content: '"';
-  position: absolute;
-  top: -8px;
-  left: 16px;
-  font-family: var(--serif);
-  font-size: 56px;
-  color: var(--moss);
-  opacity: 0.3;
-  font-style: normal;
-  font-weight: 900;
-}
-
-/* The cat list */
-.cat-list {
-  margin: 28px 0;
-  padding: 24px 28px;
-  background: var(--paper);
-  border: 1px dashed var(--ink-soft);
-  border-radius: 6px;
-}
-.cat-list-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-.cat-list-names {
-  font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--ink);
-  font-weight: 600;
-}
-.cat-list-note {
-  margin-top: 12px;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-soft);
-  font-style: italic;
-}
-
-/* Signature */
-.prologue-sign {
-  margin-top: 48px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(26, 36, 25, 0.15);
-  text-align: right;
-}
-.prologue-sign-name {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 32px;
-  color: var(--clay);
-  letter-spacing: -0.01em;
-  margin-bottom: 6px;
-}
-.prologue-sign-meta {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-soft);
-  letter-spacing: 0.05em;
-  line-height: 1.6;
-}
-
-/* Decorative paw print */
-.prologue-paw {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-left: 8px;
-  vertical-align: -3px;
-}
-
-@media (max-width: 640px) {
-  .prologue-shell { padding: 56px 20px; }
-  .prologue-greeting { font-size: 22px; }
-  .prologue-body { font-size: 16px; }
-  .prologue-body p.lead { font-size: 17px; }
-  .prologue-pullquote {
-    margin: 28px 0;
-    font-size: 18px;
-    padding: 22px 24px;
-  }
-  .prologue-sign-name { font-size: 26px; }
-}
-
-/* ============================================
    PROBLEM SECTION · Comic-inspired panels
    ============================================ */
 .problem-section {
@@ -2722,9 +2526,9 @@ section {
       </div>
     </a>
     <nav class="nav-links">
-      <a href="#prologue">前言</a>
       <a href="#problem">問題現況</a>
       <a href="#leftover">廚餘×鼠患</a>
+      <a href="#onehealth">One Health</a>
       <a href="#platform">即時地圖</a>
       <a href="#ipm">IPM 策略</a>
       <a href="#inquiry">街貓研究</a>
@@ -2804,113 +2608,6 @@ section {
     <span style="color:var(--moss);font-weight:600;">[實]</span> 為已查證的真實數值,
     <span style="color:#a87729;font-weight:600;">[估]</span> 為依公開資訊推估。
     真實鼠患通報請見 <a href="#ally" style="color:var(--moss);font-weight:600;border-bottom:1px dotted var(--moss);text-decoration:none;">見鼠地圖夥伴平台 ↓</a>。
-  </div>
-</section>
-
-<!-- ============================================
-     PROLOGUE · 個人前言
-     ============================================ -->
-<section id="prologue" class="prologue-section">
-  <div class="prologue-shell">
-    <div class="prologue-eyebrow">▲ 一封來自台北市民的信</div>
-
-    <h2 class="prologue-greeting">
-      您好,我是一個<span class="accent">普通的台北市民</span>,<br>
-      愛貓也愛狗。
-    </h2>
-
-    <div class="prologue-body">
-      <p class="lead">
-        最近台北的鼠患新聞讓我擔心。但坦白說,我擔心的不是衛生問題本身——
-        而是當城市開始大規模投藥,那些在巷弄裡被照顧的浪貓、
-        在公園盤旋的鳳頭蒼鷹、甚至有人家裡的狗,會因為二級中毒
-        一隻一隻倒下。
-      </p>
-
-      <p>
-        我住的社區裡,就有好幾隻被認養與照顧的街貓。
-        鄰居們對牠們很好——有人在巷口放飲水盤,有人冬天放紙箱,
-        有人會默默結紮並帶回原地放養(TNR)。
-      </p>
-
-      <div class="cat-list">
-        <div class="cat-list-label">▲ 我們社區的居民</div>
-        <div class="cat-list-names">
-          牠們各自有名字,各有各的脾氣<span class="prologue-paw">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;color:var(--moss);">
-              <ellipse cx="6" cy="10" rx="2" ry="2.5"/>
-              <ellipse cx="18" cy="10" rx="2" ry="2.5"/>
-              <ellipse cx="9" cy="6" rx="1.8" ry="2.2"/>
-              <ellipse cx="15" cy="6" rx="1.8" ry="2.2"/>
-              <ellipse cx="12" cy="16" rx="4.5" ry="3.5"/>
-            </svg>
-          </span>
-        </div>
-        <div class="cat-list-note">
-          全部都做過 TNR、剪了左耳。鄰居默契地一起照顧著。
-        </div>
-      </div>
-
-      <p>
-        然後我發現一件有意思的事:
-        <strong>我們這條街幾乎沒看過老鼠。</strong>
-        我不確定是因為街貓真的把鼠群嚇住了,還是我們社區
-        的環境衛生本來就比較好——但我知道:當這些貓還在這裡,
-        我們這條街的氛圍是安心的。
-      </p>
-
-      <div class="prologue-pullquote">
-        我擔心的是,如果哪一天市政府為了「除鼠」開始無差別灑毒,
-        我會看著這些有名字的貓一隻一隻倒下。
-      </div>
-
-      <p>
-        所以我做了 EcoSentinel。
-      </p>
-
-      <p>
-        我不是學者、也不是公務員、很久沒當工程師了。我只是一個
-        會在新聞裡看到「鼠患暴增」就睡不好的市民,我想用我會的方式
-        ——查資料、拼湊論述、做一個說得清楚的網站——
-        讓更多人一起想:<em>2026 年的鼠患,可能有種種原因,
-        或許是都更——但有沒有可能,是廚餘處理量能跟不上
-        禁餵豬政策的時程?</em>
-      </p>
-
-      <p>
-        也想跟更多人一起想想:<strong>毒餌真的是解決鼠患的捷徑嗎</strong>?
-        還是只是把問題從「人看得見的老鼠」,轉嫁到了
-        「人看不見的中毒街貓、夜鷺、家中寵物」?
-      </p>
-
-      <p>
-        如果你也曾經因為某隻街貓的存在而覺得這條街溫暖一點,
-        如果你也曾經擔心過家裡的狗會不會吃到毒餌——
-        歡迎留下你的觀察、你的通報、你的故事。這個平台是為你做的。
-      </p>
-
-      <div style="margin: 32px 0; display: flex; flex-wrap: wrap; gap: 12px;">
-        <a href="https://forms.gle/f8mAFN8KkBYN6GKR8" target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:8px;background:var(--clay);color:var(--paper);padding:14px 26px;font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:0.04em;text-decoration:none;border-radius:4px;transition:all 0.2s;">
-          ✉ 留下你的訊息
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 17L17 7M7 7h10v10"/>
-          </svg>
-        </a>
-        <a href="#platform"
-           style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);padding:14px 26px;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:0.04em;text-decoration:none;border:1px solid var(--ink);border-radius:4px;transition:all 0.15s;">
-          看看地圖
-        </a>
-      </div>
-
-      <div class="prologue-sign">
-        <div class="prologue-sign-name">— 一位台北市民</div>
-        <div class="prologue-sign-meta">
-          愛貓人 · 愛狗人<br>
-          EcoSentinel 發起人 · 2026
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -4006,21 +3703,27 @@ section {
       <h6>系統</h6>
       <ul>
         <li><a href="#platform">即時地圖</a></li>
-        <li><a href="#report">公民通報</a></li>
+        <li><a href="#report">通報系統</a></li>
+        <li><a href="#analytics">數據儀表</a></li>
+        <li><a href="#">API 文件</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h6>論述</h6>
+      <h6>知識庫</h6>
       <ul>
-        <li><a href="#leftover">廚餘×鼠患</a></li>
-        <li><a href="#inquiry">街貓研究</a></li>
+        <li><a href="#onehealth">One Health</a></li>
+        <li><a href="#ipm">IPM 策略</a></li>
+        <li><a href="#">猛禽圖鑑</a></li>
+        <li><a href="#">鉤端螺旋體病</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h6>夥伴 & 聯絡</h6>
+      <h6>夥伴</h6>
       <ul>
-        <li><a href="https://ratdar.taipei/" target="_blank" rel="noopener">見鼠地圖 ↗</a></li>
-        <li><a href="https://forms.gle/f8mAFN8KkBYN6GKR8" target="_blank" rel="noopener">與我們聯絡 ↗</a></li>
+        <li><a href="https://ratdar.taipei/" target="_blank">見鼠地圖</a></li>
+        <li><a href="https://data.taipei/" target="_blank">臺北市資料大平台</a></li>
+        <li><a href="https://www.cdc.gov.tw/" target="_blank">疾病管制署</a></li>
+        <li><a href="#">關於布妹</a></li>
       </ul>
     </div>
   </div>
