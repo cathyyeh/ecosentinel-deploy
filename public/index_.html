@@ -1668,6 +1668,195 @@ section {
 }
 
 /* ============================================
+   ALLY · 夥伴平台(見鼠地圖強化區)
+   ============================================ */
+.ally-section {
+  background: linear-gradient(to bottom, var(--paper) 0%, var(--paper-warm) 100%);
+  border-top: var(--rule);
+}
+
+.ally-card {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.ally-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--clay), var(--amber), var(--moss));
+}
+
+.ally-header {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 40px;
+  padding: 36px 36px 28px;
+}
+
+.ally-meta { min-width: 0; }
+.ally-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--moss);
+  background: rgba(63, 107, 60, 0.08);
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.ally-title {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.ally-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.ally-stats {
+  display: flex;
+  gap: 28px;
+  padding-top: 18px;
+  border-top: var(--rule-soft);
+}
+.ally-stat { display: flex; flex-direction: column; }
+.ally-stat-num {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--clay);
+}
+.ally-stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+.ally-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.ally-btn-primary {
+  background: var(--clay);
+  color: var(--paper);
+  padding: 14px 22px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+.ally-btn-primary:hover {
+  background: var(--clay-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(139, 58, 31, 0.3);
+}
+.ally-btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  padding: 11px 18px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ally-btn-secondary:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ally-embed {
+  border-top: var(--rule-soft);
+  background: var(--paper-warm);
+}
+.ally-embed-frame {
+  position: relative;
+  background: #0d1117;
+  height: 600px;
+  overflow: hidden;
+}
+.ally-embed-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.ally-embed-note {
+  padding: 14px 24px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: var(--paper-warm);
+  border-top: var(--rule-soft);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+.ally-embed-note a {
+  color: var(--clay);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.ally-credit {
+  padding: 18px 36px;
+  background: var(--paper-warm);
+  border-top: var(--rule-soft);
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.ally-credit strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .ally-header { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+  .ally-stats { gap: 20px; }
+  .ally-embed-frame { height: 480px; }
+}
+@media (max-width: 640px) {
+  .ally-title { font-size: 28px; }
+  .ally-stats { flex-wrap: wrap; gap: 16px; }
+  .ally-credit { padding: 16px 20px; }
+  .ally-embed-frame { height: 380px; }
+}
+
+/* ============================================
    PARTNERS · External integrations
    ============================================ */
 .partners-section {
@@ -2496,7 +2685,7 @@ section {
             <div class="desc">點擊圖標查看詳情。可疊加<strong style="color:#d4a843;">廚餘暫置點</strong>觀察空間關聯,或開啟 AI 熱點分析。</div>
           </div>
           <div class="map-overlay-br">
-            ↗ 整合外部資料: <a href="https://ratdar.taipei/" target="_blank" rel="noopener">見鼠地圖 Rat Radar</a>
+            ↗ 夥伴平台: <a href="#ally">見鼠地圖 Rat Radar</a>
           </div>
         </div>
 
@@ -2787,27 +2976,93 @@ section {
 </section>
 
 <!-- ============================================
+     ALLY · 夥伴平台 · 見鼠地圖
+     ============================================ -->
+<section id="ally" class="ally-section">
+  <div class="section-shell">
+    <div class="section-eyebrow">▲ 夥伴平台</div>
+    <h2 class="section-title">公民科學的力量已經在這裡。<em>EcoSentinel 補上政策視角。</em></h2>
+    <p class="section-intro">
+      <strong>見鼠地圖 Rat Radar</strong> 已累積數百筆台北市民的真實鼠患通報,是這個議題上最寶貴的公民科學資產。
+      EcoSentinel 不重複造輪子——我們專注於<strong>廚餘暫置政策 × 鼠患因果鏈</strong>的論述視角,
+      讓兩個平台互補成完整圖像。
+    </p>
+
+    <div class="ally-card">
+      <div class="ally-header">
+        <div class="ally-meta">
+          <div class="ally-tag">⌖ 即時資料源 · 正在運作中</div>
+          <h3 class="ally-title">見鼠地圖 Rat Radar</h3>
+          <p class="ally-desc">
+            由台北城任務團隊維運,提供市民通報鼠蹤、毒餌資訊。
+            採 LINE 登入 · 人工審核 · 公開 CSV 匯出。
+          </p>
+          <div class="ally-stats">
+            <div class="ally-stat">
+              <span class="ally-stat-num">600+</span>
+              <span class="ally-stat-label">已審核通報</span>
+            </div>
+            <div class="ally-stat">
+              <span class="ally-stat-num">29</span>
+              <span class="ally-stat-label">行政區涵蓋</span>
+            </div>
+            <div class="ally-stat">
+              <span class="ally-stat-num">2026</span>
+              <span class="ally-stat-label">持續維運</span>
+            </div>
+          </div>
+        </div>
+        <div class="ally-cta">
+          <a href="https://ratdar.taipei/" target="_blank" rel="noopener" class="ally-btn-primary">
+            在見鼠地圖回報
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </a>
+          <a href="https://ratdar.taipei/reports" target="_blank" rel="noopener" class="ally-btn-secondary">
+            瀏覽通報清單 ↗
+          </a>
+          <button class="ally-btn-secondary" id="allyToggleEmbed">
+            ▾ 在此預覽地圖
+          </button>
+        </div>
+      </div>
+
+      <div class="ally-embed" id="allyEmbed" style="display:none;">
+        <div class="ally-embed-frame">
+          <iframe src="https://ratdar.taipei/" title="見鼠地圖 Rat Radar 即時預覽"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="ally-embed-note">
+          ⚠ 上方為見鼠地圖即時內容。回報、登入請<a href="https://ratdar.taipei/" target="_blank" rel="noopener">點此到原站操作</a>。
+          內容版權屬於 Rat Radar 專案團隊。
+        </div>
+      </div>
+
+      <div class="ally-credit">
+        <strong>資料歸屬:</strong> 見鼠地圖 Rat Radar (ratdar.taipei) ·
+        <strong>致謝:</strong> 感謝台北城任務團隊維運此平台。EcoSentinel 與見鼠地圖為各自獨立運作的公民科學專案,共享降低台北鼠患的目標。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
      PARTNERS
      ============================================ -->
 <section class="partners-section">
   <div class="section-shell">
-    <div class="section-eyebrow">▲ 整合夥伴</div>
+    <div class="section-eyebrow">▲ 其他資料夥伴</div>
     <h2 class="section-title">不孤軍奮戰。<em>連結現有資源與社群。</em></h2>
     <p class="section-intro">
-      EcoSentinel 主動串接台北市現有公民科學與政府開放資料平台,讓每個系統互補、互信、互通。
+      除了見鼠地圖之外,我們也參考下列開放資料來源作為政策論述與風險分析的基礎。
     </p>
 
     <div class="partners-grid">
-      <a href="https://ratdar.taipei/" target="_blank" rel="noopener" class="partner-card">
-        <span class="partner-tag">公民科學 · 已串接</span>
-        <h5>見鼠地圖 Rat Radar</h5>
-        <p>台北城任務的群眾外包鼠患地圖。我們即時同步其熱點資料,作為 EcoSentinel 鼠患圖層的補充來源。</p>
-        <span class="arrow">前往 ratdar.taipei</span>
-      </a>
       <a href="https://data.taipei/" target="_blank" rel="noopener" class="partner-card">
         <span class="partner-tag">政府開放資料</span>
         <h5>臺北市資料大平台</h5>
-        <p>整合區公所環境衛生稽查、市場管理、廢棄物處理等公開資料,供風險分析模型使用。</p>
+        <p>區公所環境衛生稽查、市場管理、廢棄物處理等公開資料,供風險分析模型參考使用。</p>
         <span class="arrow">data.taipei</span>
       </a>
       <a href="https://www.cdc.gov.tw/" target="_blank" rel="noopener" class="partner-card">
@@ -2815,6 +3070,12 @@ section {
         <h5>衛福部疾病管制署</h5>
         <p>鉤端螺旋體病與漢他病毒等鼠媒傳染病的法定傳染病通報,作為早期預警系統的關鍵指標。</p>
         <span class="arrow">cdc.gov.tw</span>
+      </a>
+      <a href="https://www.epa.gov.tw/" target="_blank" rel="noopener" class="partner-card">
+        <span class="partner-tag">環境保護</span>
+        <h5>環境部</h5>
+        <p>廚餘處理政策、IPM 整合性蟲害管理、生活廢棄物統計等資料來源。</p>
+        <span class="arrow">epa.gov.tw</span>
       </a>
     </div>
   </div>
@@ -3504,6 +3765,26 @@ const navObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-40% 0px -55% 0px' });
 
 document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
+
+// ============================================
+// Ally section · 見鼠地圖預覽展開/摺疊
+// ============================================
+const allyToggle = document.getElementById('allyToggleEmbed');
+const allyEmbed = document.getElementById('allyEmbed');
+if (allyToggle && allyEmbed) {
+  allyToggle.addEventListener('click', () => {
+    const isOpen = allyEmbed.style.display !== 'none';
+    if (isOpen) {
+      allyEmbed.style.display = 'none';
+      allyToggle.textContent = '▾ 在此預覽地圖';
+    } else {
+      allyEmbed.style.display = 'block';
+      allyToggle.textContent = '▴ 收起預覽';
+      // 平滑捲到嵌入區
+      setTimeout(() => allyEmbed.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+    }
+  });
+}
 </script>
 
 </body>
