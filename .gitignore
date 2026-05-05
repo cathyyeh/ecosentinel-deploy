@@ -1,0 +1,33 @@
+# 本機開發 config(避免把私人 Supabase key 推上 git)
+public/js/config.local.js
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 依賴(若之後加 npm)
+node_modules/
+package-lock.json
+
+# 建構產物
+dist/
+build/
+.cache/
+
+# 環境變數
+.env
+.env.local
+.env.*.local
+
+# 日誌
+*.log
+npm-debug.log*
+
+# Supabase CLI(若使用本機開發)
+.supabase/
+.branches/
+.temp/
