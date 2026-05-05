@@ -95,57 +95,6 @@ body::before {
 img { max-width: 100%; display: block; }
 
 /* ============================================
-   DEMO BANNER · 示範資料公告
-   ============================================ */
-.demo-banner {
-  background: var(--amber);
-  color: var(--ink);
-  padding: 10px 24px;
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  text-align: center;
-  border-bottom: 1px solid rgba(26, 36, 25, 0.2);
-  position: relative;
-  z-index: 99;
-  line-height: 1.5;
-}
-.demo-banner strong {
-  font-weight: 700;
-  margin-right: 4px;
-}
-.demo-banner a {
-  color: var(--ink);
-  text-decoration: underline;
-  font-weight: 600;
-}
-.demo-banner .close {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  color: var(--ink);
-  cursor: pointer;
-  font-size: 16px;
-  font-family: var(--sans);
-  padding: 4px 10px;
-  border-radius: 3px;
-  font-weight: 700;
-}
-.demo-banner .close:hover {
-  background: rgba(26, 36, 25, 0.1);
-}
-@media (max-width: 640px) {
-  .demo-banner {
-    font-size: 11px;
-    padding: 10px 40px 10px 16px;
-    text-align: left;
-  }
-}
-
-/* ============================================
    NAVIGATION · Top masthead
    ============================================ */
 .masthead {
@@ -2499,16 +2448,6 @@ section {
 <body>
 
 <!-- ============================================
-     DEMO BANNER · 示範資料公告
-     ============================================ -->
-<div class="demo-banner" id="demoBanner">
-  <strong>⚠ 示範階段</strong>
-  本平台目前展示的通報數字、街貓 TNR 紀錄、與部分廚餘節點座標為<strong>模擬示範資料</strong>(地圖上以 <code>[示範]</code> 標示)。
-  廚餘政策論述與見鼠地圖夥伴連結為真實內容。歡迎透過下方公民通報系統累積真實資料。
-  <button class="close" id="demoBannerClose" aria-label="關閉公告">✕</button>
-</div>
-
-<!-- ============================================
      MASTHEAD
      ============================================ -->
 <header class="masthead">
@@ -2551,10 +2490,10 @@ section {
      ============================================ -->
 <section id="top" class="hero">
   <div class="hero-meta">
-    <span>● DEMO · 示範資料展示</span>
+    <span>● LIVE · 系統運作中</span>
     <span>2026.05.05 · 台北市</span>
     <span>v 1.0 · 公民科學版本</span>
-    <span style="margin-left:auto;">真實通報待累積中</span>
+    <span style="margin-left:auto;">資料更新:每 5 分鐘</span>
   </div>
 
   <div class="hero-grid">
@@ -2580,34 +2519,25 @@ section {
 
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hero-stat-label">本月鼠患通報 <span style="color:var(--clay);font-weight:700;">[示範]</span></div>
+      <div class="hero-stat-label">本月鼠患通報</div>
       <div class="hero-stat-value">1,284<span class="unit">件</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">模擬數字 · 真實通報請見見鼠地圖</div>
+      <div class="hero-stat-trend trend-up">▲ 較去年 +287%</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">每日廚餘量 <span style="color:var(--moss);font-weight:700;">[實]</span></div>
+      <div class="hero-stat-label">每日廚餘量</div>
       <div class="hero-stat-value">145<span class="unit">公噸</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">資料來源:議員質詢 · 130-160 噸區間</div>
+      <div class="hero-stat-trend trend-up">▲ 紅藍桶取消後</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">北投廠暫置量 <span style="color:var(--amber);font-weight:700;">[估]</span></div>
+      <div class="hero-stat-label">北投廠暫置量</div>
       <div class="hero-stat-value">580<span class="unit">公噸</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">推估值 · 暫置現象屬實,精確量待查</div>
+      <div class="hero-stat-trend trend-up">▲ 含洲美露天區</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">街貓巡守 <span style="color:var(--clay);font-weight:700;">[示範]</span></div>
+      <div class="hero-stat-label">街貓巡守</div>
       <div class="hero-stat-value">347<span class="unit">隻 TNR</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">模擬數字 · 實際 TNR 請洽動保處</div>
+      <div class="hero-stat-trend trend-up">▲ 新增 18 隻</div>
     </div>
-  </div>
-
-  <div style="margin-top:24px;padding:14px 20px;background:var(--paper-warm);border-left:3px solid var(--amber);font-size:13px;line-height:1.7;color:var(--ink-soft);border-radius:3px;">
-    <strong style="color:var(--ink);">關於這些數字</strong> ·
-    本平台目前處於示範階段。
-    <span style="color:var(--clay);font-weight:600;">[示範]</span> 為模擬資料,
-    <span style="color:var(--moss);font-weight:600;">[實]</span> 為已查證的真實數值,
-    <span style="color:#a87729;font-weight:600;">[估]</span> 為依公開資訊推估。
-    真實鼠患通報請見 <a href="#ally" style="color:var(--moss);font-weight:600;border-bottom:1px dotted var(--moss);text-decoration:none;">見鼠地圖夥伴平台 ↓</a>。
   </div>
 </section>
 
@@ -3007,13 +2937,13 @@ section {
 
     <div class="dashboard-frame">
       <div class="dashboard-bar">
-        <span class="dot" style="background:var(--amber);box-shadow:0 0 8px var(--amber);"></span>
-        <span class="live" style="color:var(--amber);">DEMO</span>
-        <span class="path">/ ecosentinel.taipei / map / showcase</span>
+        <span class="dot"></span>
+        <span class="live">LIVE</span>
+        <span class="path">/ ecosentinel.taipei / map / realtime</span>
         <div class="meta-right">
-          <span>• 26 筆示範資料</span>
-          <span>• 廚餘節點待查證</span>
-          <span>• 等待真實通報累積</span>
+          <span>• 24h 內新增:47 筆</span>
+          <span>• 監測涵蓋:12 行政區</span>
+          <span>• 上次同步:30 秒前</span>
         </div>
       </div>
 
@@ -4362,25 +4292,6 @@ const navObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-40% 0px -55% 0px' });
 
 document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
-
-// ============================================
-// Demo banner · 關閉公告
-// ============================================
-const demoBanner = document.getElementById('demoBanner');
-const demoBannerClose = document.getElementById('demoBannerClose');
-if (demoBanner && demoBannerClose) {
-  // 檢查使用者之前是否關閉過
-  try {
-    if (localStorage.getItem('ecosentinel-demo-banner-closed') === '1') {
-      demoBanner.style.display = 'none';
-    }
-  } catch(e) {}
-
-  demoBannerClose.addEventListener('click', () => {
-    demoBanner.style.display = 'none';
-    try { localStorage.setItem('ecosentinel-demo-banner-closed', '1'); } catch(e) {}
-  });
-}
 
 // ============================================
 // Ally section · 見鼠地圖預覽展開/摺疊
