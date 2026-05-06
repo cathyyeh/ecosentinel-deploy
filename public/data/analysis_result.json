@@ -1,0 +1,214 @@
+{
+  "total_taipei": 510,
+  "total_all": 743,
+  "time_range": {
+    "start": "2026-05-01",
+    "end": "2026-05-06"
+  },
+  "radius_analysis": [
+    {
+      "radius_km": 0.5,
+      "count": 33,
+      "pct": 6.5
+    },
+    {
+      "radius_km": 1.0,
+      "count": 127,
+      "pct": 24.9
+    },
+    {
+      "radius_km": 2.0,
+      "count": 337,
+      "pct": 66.1
+    }
+  ],
+  "leftover_node_density": [
+    {
+      "id": "l1",
+      "name": "北投焚化廠 · 洲美露天區",
+      "volume_tpd": 580,
+      "rats_within_1km": 7
+    },
+    {
+      "id": "l2",
+      "name": "木柵堆肥場",
+      "volume_tpd": 25,
+      "rats_within_1km": 3
+    },
+    {
+      "id": "l3",
+      "name": "大同清潔隊轉運站",
+      "volume_tpd": 12,
+      "rats_within_1km": 26
+    },
+    {
+      "id": "l4",
+      "name": "大安清潔隊轉運站",
+      "volume_tpd": 15,
+      "rats_within_1km": 19
+    },
+    {
+      "id": "l5",
+      "name": "萬華清潔隊轉運站",
+      "volume_tpd": 14,
+      "rats_within_1km": 29
+    },
+    {
+      "id": "l6",
+      "name": "內湖清潔隊轉運站",
+      "volume_tpd": 10,
+      "rats_within_1km": 4
+    },
+    {
+      "id": "l7",
+      "name": "松山清潔隊轉運站",
+      "volume_tpd": 11,
+      "rats_within_1km": 21
+    },
+    {
+      "id": "l8",
+      "name": "信義清潔隊轉運站",
+      "volume_tpd": 6,
+      "rats_within_1km": 18
+    }
+  ],
+  "density_comparison": {
+    "leftover_zone": {
+      "count": 127,
+      "area_km2": 25.1,
+      "density": 5.1
+    },
+    "other_zone": {
+      "count": 383,
+      "area_km2": 246.7,
+      "density": 1.6
+    },
+    "ratio": 3.3
+  },
+  "district_ranking": [
+    {
+      "district": "信義區",
+      "count": 81,
+      "area_km2": 11.21,
+      "density": 7.23
+    },
+    {
+      "district": "松山區",
+      "count": 61,
+      "area_km2": 9.29,
+      "density": 6.57
+    },
+    {
+      "district": "大安區",
+      "count": 64,
+      "area_km2": 11.36,
+      "density": 5.63
+    },
+    {
+      "district": "中正區",
+      "count": 42,
+      "area_km2": 7.61,
+      "density": 5.52
+    },
+    {
+      "district": "萬華區",
+      "count": 43,
+      "area_km2": 8.85,
+      "density": 4.86
+    },
+    {
+      "district": "中山區",
+      "count": 60,
+      "area_km2": 13.68,
+      "density": 4.39
+    },
+    {
+      "district": "大同區",
+      "count": 19,
+      "area_km2": 5.68,
+      "density": 3.35
+    },
+    {
+      "district": "內湖區",
+      "count": 28,
+      "area_km2": 31.58,
+      "density": 0.89
+    },
+    {
+      "district": "文山區",
+      "count": 27,
+      "area_km2": 31.5,
+      "density": 0.86
+    },
+    {
+      "district": "南港區",
+      "count": 18,
+      "area_km2": 21.84,
+      "density": 0.82
+    },
+    {
+      "district": "士林區",
+      "count": 39,
+      "area_km2": 62.37,
+      "density": 0.63
+    },
+    {
+      "district": "北投區",
+      "count": 28,
+      "area_km2": 56.82,
+      "density": 0.49
+    }
+  ],
+  "keyword_analysis": [
+    {
+      "category": "建築/管線",
+      "count": 151,
+      "pct": 29.6
+    },
+    {
+      "category": "公園綠地",
+      "count": 73,
+      "pct": 14.3
+    },
+    {
+      "category": "排水/下水道",
+      "count": 62,
+      "pct": 12.2
+    },
+    {
+      "category": "廚餘垃圾",
+      "count": 60,
+      "pct": 11.8
+    },
+    {
+      "category": "住家",
+      "count": 42,
+      "pct": 8.2
+    },
+    {
+      "category": "市場",
+      "count": 30,
+      "pct": 5.9
+    },
+    {
+      "category": "車站交通",
+      "count": 22,
+      "pct": 4.3
+    },
+    {
+      "category": "餐飲",
+      "count": 19,
+      "pct": 3.7
+    },
+    {
+      "category": "學校",
+      "count": 7,
+      "pct": 1.4
+    },
+    {
+      "category": "醫院",
+      "count": 3,
+      "pct": 0.6
+    }
+  ]
+}
