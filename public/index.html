@@ -3409,9 +3409,10 @@ section {
      DEMO BANNER · 示範資料公告
      ============================================ -->
 <div class="demo-banner" id="demoBanner">
-  <strong>⚠ 示範階段</strong>
-  本平台目前展示的通報數字、街貓 TNR 紀錄、與部分廚餘節點座標為<strong>模擬示範資料</strong>(地圖上以 <code>[示範]</code> 標示)。
-  廚餘政策論述與見鼠地圖夥伴連結為真實內容。歡迎透過下方公民通報系統累積真實資料。
+  <strong>♢ 平台說明</strong>
+  本站專注於<strong>廚餘×鼠患的政策論述</strong>與<strong>熱區因子分析</strong>。
+  即時鼠患通報請至夥伴平台<a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;font-weight:600;">見鼠地圖 ↗</a>。
+  地圖上的廚餘節點為 EcoSentinel 自行整理(部分查證中),街貓為社區實際 TNR 個體。
   <button class="close" id="demoBannerClose" aria-label="關閉公告">✕</button>
 </div>
 
@@ -3488,9 +3489,9 @@ section {
 
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hero-stat-label">本月鼠患通報 <span style="color:var(--clay);font-weight:700;">[示範]</span></div>
-      <div class="hero-stat-value">1,284<span class="unit">件</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">模擬數字 · 真實通報請見見鼠地圖</div>
+      <div class="hero-stat-label">廚餘區密度倍率 <span style="color:var(--moss);font-weight:700;">[實]</span></div>
+      <div class="hero-stat-value">3.3<span class="unit">×</span></div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">廚餘節點 1km 內通報密度比其他區高</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-label">每日廚餘量 <span style="color:var(--moss);font-weight:700;">[實]</span></div>
@@ -3503,19 +3504,18 @@ section {
       <div class="hero-stat-trend" style="color:var(--ink-soft);">推估值 · 暫置現象屬實,精確量待查</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">街貓巡守 <span style="color:var(--clay);font-weight:700;">[示範]</span></div>
-      <div class="hero-stat-value">347<span class="unit">隻 TNR</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">模擬數字 · 實際 TNR 請洽動保處</div>
+      <div class="hero-stat-label">通報描述提到老舊建築 <span style="color:var(--moss);font-weight:700;">[實]</span></div>
+      <div class="hero-stat-value">29.6<span class="unit">%</span></div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">510 筆通報文字分析 · 最大成因線索</div>
     </div>
   </div>
 
-  <div style="margin-top:24px;padding:14px 20px;background:var(--paper-warm);border-left:3px solid var(--amber);font-size:13px;line-height:1.7;color:var(--ink-soft);border-radius:3px;">
+  <div style="margin-top:24px;padding:14px 20px;background:var(--paper-warm);border-left:3px solid var(--moss);font-size:13px;line-height:1.7;color:var(--ink-soft);border-radius:3px;">
     <strong style="color:var(--ink);">關於這些數字</strong> ·
-    本平台目前處於示範階段。
-    <span style="color:var(--clay);font-weight:600;">[示範]</span> 為模擬資料,
     <span style="color:var(--moss);font-weight:600;">[實]</span> 為已查證的真實數值,
     <span style="color:#a87729;font-weight:600;">[估]</span> 為依公開資訊推估。
-    真實鼠患通報請見 <a href="#ally" style="color:var(--moss);font-weight:600;border-bottom:1px dotted var(--moss);text-decoration:none;">見鼠地圖夥伴平台 ↓</a>。
+    完整熱區分析請見 <a href="#hotspot-analysis" style="color:var(--moss);font-weight:600;border-bottom:1px dotted var(--moss);text-decoration:none;">熱區因子分析 ↓</a> ·
+    即時鼠患通報請至 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:var(--moss);font-weight:600;border-bottom:1px dotted var(--moss);text-decoration:none;">見鼠地圖 ↗</a>。
   </div>
 </section>
 
@@ -4201,22 +4201,25 @@ section {
      ============================================ -->
 <section id="platform" class="platform-section">
   <div class="section-shell">
-    <div class="section-eyebrow">▲ 即時生態守護系統</div>
-    <h2 class="section-title">用數據,理解整個城市。<em>科學監測 × 精準分析 × 快速行動。</em></h2>
+    <div class="section-eyebrow">▲ 廚餘節點 × 街貓地圖</div>
+    <h2 class="section-title">用空間,理解食源結構。<em>廚餘暫置點 × TNR 街貓 × 通報入口。</em></h2>
     <p class="section-intro">
-      整合鼠患通報、街貓巡守、投藥點與中毒事件於同一張地圖。
-      AI 熱點分析自動識別風險區域,讓資源投入最需要的地方。
+      這張地圖呈現 EcoSentinel 整理的 <strong>8 個廚餘節點</strong>(食源結構)、
+      社區實際的 <strong>5 隻 TNR 街貓</strong>(生物防治參考),以及 <strong>公民通報入口</strong>。
+      <br><br>
+      ⓘ 即時鼠患通報請至夥伴平台 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:var(--moss-bright);font-weight:600;border-bottom:1px dotted var(--moss-bright);text-decoration:none;">見鼠地圖 ratdar.taipei ↗</a>——
+      EcoSentinel 補政策視角,不分散通報能量。
     </p>
 
     <div class="dashboard-frame">
       <div class="dashboard-bar">
-        <span class="dot" style="background:var(--amber);box-shadow:0 0 8px var(--amber);"></span>
-        <span class="live" style="color:var(--amber);">DEMO</span>
-        <span class="path">/ ecosentinel.taipei / map / showcase</span>
+        <span class="dot" style="background:var(--moss-bright);box-shadow:0 0 8px var(--moss-bright);"></span>
+        <span class="live" style="color:var(--moss-bright);">LIVE</span>
+        <span class="path">/ ecosentinel.tw / map</span>
         <div class="meta-right">
-          <span>• 26 筆示範資料</span>
-          <span>• 廚餘節點待查證</span>
-          <span>• 等待真實通報累積</span>
+          <span>• 8 個廚餘節點</span>
+          <span>• 5 隻 TNR 街貓</span>
+          <span>• 公民通報持續累積</span>
         </div>
       </div>
 
@@ -4224,50 +4227,51 @@ section {
         <!-- Layer toggles -->
         <aside class="dash-side">
           <h4>地圖圖層</h4>
-          <div class="layer-toggle active" data-layer="rats">
-            <div class="swatch" style="background:#c5552d;"></div>
-            <span>鼠患通報</span>
-            <span class="count">428</span>
-          </div>
-          <div class="layer-toggle active" data-layer="cats">
-            <div class="swatch" style="background:#6b8e5a;"></div>
-            <span>街貓巡守</span>
-            <span class="count">347</span>
-          </div>
-          <div class="layer-toggle active" data-layer="poison">
-            <div class="swatch" style="background:#d4a843;"></div>
-            <span>投藥點</span>
-            <span class="count">62</span>
-          </div>
-          <div class="layer-toggle active" data-layer="injured">
-            <div class="swatch" style="background:#8b3a52;"></div>
-            <span>中毒鳥獸</span>
-            <span class="count">9</span>
-          </div>
           <div class="layer-toggle active" data-layer="leftover">
             <div class="swatch" style="background:#a87729;"></div>
             <span>廚餘暫置點</span>
-            <span class="count">8</span>
+            <span class="count" id="count-leftover">8</span>
           </div>
-          <div class="layer-toggle" data-layer="heat">
-            <div class="swatch" style="background:linear-gradient(90deg,#5a8a4f,#d4a843,#c5552d);"></div>
-            <span>熱點分析</span>
-            <span class="count">AI</span>
+          <div class="layer-toggle active" data-layer="cats">
+            <div class="swatch" style="background:#6b8e5a;"></div>
+            <span>TNR 街貓</span>
+            <span class="count" id="count-cats">5</span>
+          </div>
+          <div class="layer-toggle active" data-layer="rats">
+            <div class="swatch" style="background:#c5552d;"></div>
+            <span>公民通報</span>
+            <span class="count" id="count-rats">0</span>
+          </div>
+          <div class="layer-toggle active" data-layer="poison" style="display:none;" id="layer-poison">
+            <div class="swatch" style="background:#d4a843;"></div>
+            <span>投藥點</span>
+            <span class="count" id="count-poison">0</span>
+          </div>
+          <div class="layer-toggle active" data-layer="injured" style="display:none;" id="layer-injured">
+            <div class="swatch" style="background:#8b3a52;"></div>
+            <span>中毒鳥獸</span>
+            <span class="count" id="count-injured">0</span>
           </div>
 
-          <h4>分析面板</h4>
+          <div style="margin-top:12px;padding:10px 10px;background:rgba(244,240,230,0.04);border-radius:4px;border-left:2px solid var(--moss-bright);">
+            <p style="font-size:11px;line-height:1.5;color:rgba(244,240,230,0.7);margin:0;">
+              即時鼠患通報請至 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:var(--moss-bright);text-decoration:underline;">見鼠地圖 ↗</a>
+            </p>
+          </div>
+
+          <h4 style="margin-top:18px;">分析參考</h4>
           <div class="layer-toggle" style="cursor:default;">
-            <div style="width:14px;height:14px;display:grid;place-items:center;color:var(--leaf);">●</div>
-            <span style="font-size:12px;">街貓活動 <strong style="color:var(--leaf);">正常</strong></span>
+            <div style="width:14px;height:14px;display:grid;place-items:center;color:var(--clay);">●</div>
+            <span style="font-size:12px;">廚餘區密度 <strong style="color:var(--clay);">3.3×</strong></span>
           </div>
           <div class="layer-toggle" style="cursor:default;">
             <div style="width:14px;height:14px;display:grid;place-items:center;color:var(--amber);">●</div>
-            <span style="font-size:12px;">鼠跡監測 <strong style="color:var(--amber);">中度</strong></span>
+            <span style="font-size:12px;">老舊建築關鍵字 <strong style="color:var(--amber);">29.6%</strong></span>
           </div>
-          <div class="layer-toggle" style="cursor:default;">
-            <div style="width:14px;height:14px;display:grid;place-items:center;color:var(--leaf);">●</div>
-            <span style="font-size:12px;">疾病風險 <strong style="color:var(--leaf);">低</strong></span>
-          </div>
+          <a href="#hotspot-analysis" class="layer-toggle" style="text-decoration:none;color:inherit;">
+            <div style="width:14px;height:14px;display:grid;place-items:center;color:var(--leaf);">→</div>
+            <span style="font-size:12px;">查看完整分析 <strong style="color:var(--leaf);">↓</strong></span>
+          </a>
         </aside>
 
         <!-- Map -->
@@ -5020,17 +5024,40 @@ if (error) {
 }
 reports = (rawReports || []).map(normalizeReport);
 
+// 動態更新 layer toggles 的計數,並隱藏空的 layer
+function updateLayerCounts() {
+  const counts = { rat: 0, cat: 0, poison: 0, injured: 0, leftover: 0 };
+  reports.forEach(r => { if (counts[r.type] !== undefined) counts[r.type]++; });
+
+  const setCount = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+  setCount('count-rats', counts.rat);
+  setCount('count-cats', counts.cat);
+  setCount('count-leftover', counts.leftover);
+  setCount('count-poison', counts.poison);
+  setCount('count-injured', counts.injured);
+
+  // 隱藏空的 poison/injured layer
+  const poisonLayer = document.getElementById('layer-poison');
+  const injuredLayer = document.getElementById('layer-injured');
+  if (poisonLayer) poisonLayer.style.display = counts.poison > 0 ? 'flex' : 'none';
+  if (injuredLayer) injuredLayer.style.display = counts.injured > 0 ? 'flex' : 'none';
+}
+updateLayerCounts();
+
 // 顯示資料來源狀態(在 navbar 上加一個小指示燈)
 const statusBadge = document.createElement('span');
 statusBadge.style.cssText = 'font-family:var(--mono);font-size:10px;letter-spacing:0.05em;padding:3px 8px;border-radius:10px;margin-right:8px;';
 if (mock || USE_MOCK_DATA) {
   statusBadge.style.cssText += 'background:rgba(212,168,67,0.15);color:#8b6f1f;border:1px solid rgba(212,168,67,0.4);';
-  statusBadge.textContent = '◆ DEMO 模式';
-  statusBadge.title = '目前使用本機示範資料。設定 Supabase 後將切換為即時資料。';
+  statusBadge.textContent = '◆ 本機模式';
+  statusBadge.title = '目前使用本機資料。設定 Supabase 後將切換為雲端同步。';
 } else {
   statusBadge.style.cssText += 'background:rgba(63,107,60,0.15);color:#3f6b3c;border:1px solid rgba(63,107,60,0.4);';
-  statusBadge.textContent = '● 即時資料';
-  statusBadge.title = '已連線 Supabase,資料即時同步。';
+  statusBadge.textContent = '● 雲端同步';
+  statusBadge.title = '已連線 Supabase,通報即時同步。';
 }
 const navCta = document.querySelector('.nav-cta');
 if (navCta) navCta.insertBefore(statusBadge, navCta.firstChild);
@@ -5216,25 +5243,39 @@ map.on('click', (e) => {
 // FEED LIST
 // ============================================
 const feedListEl = document.getElementById('feedList');
-reports.slice().reverse().forEach(r => {
-  const meta = typeMeta[r.type];
-  if (!meta) return;
-  const item = document.createElement('div');
-  item.className = 'feed-item';
-  item.innerHTML = `
-    <div class="feed-item-head">
-      <div class="icon-dot" style="background:${meta.color};"></div>
-      <div class="type">${meta.label}</div>
-      <div class="time">${r.time}</div>
+
+// 過濾出真正屬於「動態」的資料(廚餘是靜態節點,不放在動態 feed)
+const feedReports = reports.filter(r => r.type !== 'leftover');
+
+if (feedReports.length === 0) {
+  feedListEl.innerHTML = `
+    <div style="padding:20px 16px;text-align:center;font-size:12px;line-height:1.7;color:rgba(244,240,230,0.55);font-family:var(--mono);">
+      ◇ 尚無公民通報<br>
+      <span style="font-size:11px;opacity:0.7;">使用下方表單送出第一筆,或</span><br>
+      <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:rgba(244,240,230,0.75);text-decoration:underline;">至見鼠地圖看即時鼠患 ↗</a>
     </div>
-    <div class="desc">${r.title}</div>
-    <div class="loc">📍 ${r.loc}</div>
   `;
-  item.addEventListener('click', () => {
-    map.flyTo([r.lat, r.lng], 16, { duration: 1.2 });
+} else {
+  feedReports.slice().reverse().forEach(r => {
+    const meta = typeMeta[r.type];
+    if (!meta) return;
+    const item = document.createElement('div');
+    item.className = 'feed-item';
+    item.innerHTML = `
+      <div class="feed-item-head">
+        <div class="icon-dot" style="background:${meta.color};"></div>
+        <div class="type">${meta.label}</div>
+        <div class="time">${r.time}</div>
+      </div>
+      <div class="desc">${r.title}</div>
+      <div class="loc">📍 ${r.loc}</div>
+    `;
+    item.addEventListener('click', () => {
+      map.flyTo([r.lat, r.lng], 16, { duration: 1.2 });
+    });
+    feedListEl.appendChild(item);
   });
-  feedListEl.appendChild(item);
-});
+}
 
 // ============================================
 // REALTIME · 訂閱新通報(他人也通報時即時顯示)
@@ -5560,7 +5601,7 @@ async function submitReport(e) {
       toast.style.background = 'var(--clay-deep)';
     } else {
       toastMsg.textContent = mock
-        ? '✓ 通報已模擬送出(目前為 DEMO 模式)'
+        ? '✓ 通報已模擬送出(本機模式 · 未連線雲端)'
         : '✓ 通報已送出,謝謝您的協助!';
       toast.style.background = 'var(--moss)';
 
@@ -5570,6 +5611,7 @@ async function submitReport(e) {
         reports.unshift(newReport);
         addReportToMap(newReport);
         addReportToFeed(newReport, true);
+        updateLayerCounts();
       }
 
       // 重置表單

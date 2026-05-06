@@ -2,9 +2,34 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>EcoSentinel 生態守護系統 · 鼠鼠去,生態回來</title>
 <meta name="description" content="從毒到精準,走向生態平衡。台北城市生態守護系統 · One Health × IPM 科學治理">
+
+<!-- ===========================================
+     PWA · Progressive Web App 設定
+     =========================================== -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1a2419">
+<meta name="application-name" content="EcoSentinel">
+
+<!-- iOS Safari PWA 支援 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EcoSentinel">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+
+<!-- Open Graph (社群分享預覽) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="EcoSentinel 生態守護系統">
+<meta property="og:description" content="台北鼠患通報、街貓 TNR、廚餘節點地圖。從毒到精準,走向生態平衡。">
+<meta property="og:image" content="/icons/icon-512.png">
+<meta property="og:url" content="https://www.ecosentinel.tw">
+<meta property="og:locale" content="zh_TW">
 
 <!-- Leaflet for interactive maps -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -93,6 +118,157 @@ body::before {
 }
 
 img { max-width: 100%; display: block; }
+
+/* ============================================
+   PWA INSTALL BANNER · 加到主畫面提示
+   ============================================ */
+.pwa-install-banner {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  padding: 14px 16px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(120%);
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+  font-family: var(--sans);
+}
+.pwa-install-banner.show { transform: translateY(0); }
+
+.pwa-install-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--moss) 0%, var(--moss-deep) 100%);
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+}
+
+.pwa-install-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.pwa-install-text strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+.pwa-install-text span {
+  color: rgba(244, 240, 230, 0.7);
+}
+
+.pwa-install-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.pwa-install-actions button {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.pwa-install-btn-primary {
+  background: var(--amber);
+  color: var(--ink);
+}
+.pwa-install-btn-primary:hover { background: #e8c45c; }
+.pwa-install-btn-dismiss {
+  background: transparent;
+  color: rgba(244, 240, 230, 0.6);
+  padding: 8px 10px !important;
+}
+.pwa-install-btn-dismiss:hover {
+  color: var(--paper);
+  background: rgba(244, 240, 230, 0.08);
+}
+
+@media (max-width: 480px) {
+  .pwa-install-banner {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 12px;
+    gap: 10px;
+  }
+  .pwa-install-text { font-size: 12px; }
+  .pwa-install-text strong { font-size: 13px; }
+  .pwa-install-actions button { padding: 7px 11px; font-size: 12px; }
+}
+
+/* ============================================
+   DEMO BANNER · 示範資料公告
+   ============================================ */
+.demo-banner {
+  background: var(--amber);
+  color: var(--ink);
+  padding: 10px 24px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  border-bottom: 1px solid rgba(26, 36, 25, 0.2);
+  position: relative;
+  z-index: 99;
+  line-height: 1.5;
+}
+.demo-banner strong {
+  font-weight: 700;
+  margin-right: 4px;
+}
+.demo-banner a {
+  color: var(--ink);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.demo-banner .close {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--sans);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.demo-banner .close:hover {
+  background: rgba(26, 36, 25, 0.1);
+}
+@media (max-width: 640px) {
+  .demo-banner {
+    font-size: 11px;
+    padding: 10px 40px 10px 16px;
+    text-align: left;
+  }
+}
 
 /* ============================================
    NAVIGATION · Top masthead
@@ -395,6 +571,202 @@ section {
   color: var(--ink-soft);
   max-width: 680px;
   margin-bottom: 48px;
+}
+
+/* ============================================
+   PROLOGUE · 個人前言(手寫信風格)
+   ============================================ */
+.prologue-section {
+  background:
+    linear-gradient(to bottom, var(--paper) 0%, var(--paper-warm) 50%, var(--paper) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.prologue-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(107, 142, 90, 0.05) 0%, transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(212, 168, 67, 0.04) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.prologue-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.prologue-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.prologue-eyebrow::before,
+.prologue-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--clay);
+  opacity: 0.4;
+}
+
+.prologue-greeting {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+.prologue-greeting .accent {
+  color: var(--moss);
+}
+
+.prologue-body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.prologue-body p {
+  margin-bottom: 22px;
+}
+
+.prologue-body p.lead {
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+.prologue-body strong {
+  font-weight: 700;
+  background: linear-gradient(transparent 70%, rgba(212, 168, 67, 0.45) 70%, rgba(212, 168, 67, 0.45) 92%, transparent 92%);
+  padding: 0 2px;
+}
+
+.prologue-body em {
+  font-style: italic;
+  color: var(--moss);
+  font-weight: 600;
+}
+
+/* Decorative pull quote */
+.prologue-pullquote {
+  margin: 36px -20px;
+  padding: 28px 32px;
+  border-left: 4px solid var(--moss);
+  background: rgba(107, 142, 90, 0.06);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--moss-deep);
+  font-weight: 600;
+  border-radius: 0 6px 6px 0;
+  position: relative;
+}
+.prologue-pullquote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  font-family: var(--serif);
+  font-size: 56px;
+  color: var(--moss);
+  opacity: 0.3;
+  font-style: normal;
+  font-weight: 900;
+}
+
+/* The cat list */
+.cat-list {
+  margin: 28px 0;
+  padding: 24px 28px;
+  background: var(--paper);
+  border: 1px dashed var(--ink-soft);
+  border-radius: 6px;
+}
+.cat-list-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.cat-list-names {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+  font-weight: 600;
+}
+.cat-list-note {
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* Signature */
+.prologue-sign {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(26, 36, 25, 0.15);
+  text-align: right;
+}
+.prologue-sign-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--clay);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.prologue-sign-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+/* Decorative paw print */
+.prologue-paw {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: -3px;
+}
+
+@media (max-width: 640px) {
+  .prologue-shell { padding: 56px 20px; }
+  .prologue-greeting { font-size: 22px; }
+  .prologue-body { font-size: 16px; }
+  .prologue-body p.lead { font-size: 17px; }
+  .prologue-pullquote {
+    margin: 28px 0;
+    font-size: 18px;
+    padding: 22px 24px;
+  }
+  .prologue-sign-name { font-size: 26px; }
 }
 
 /* ============================================
@@ -925,6 +1297,451 @@ section {
   .stockpile-grid { grid-template-columns: 1fr; }
   .hypothesis-block { font-size: 16px; padding: 22px 24px; }
   .leftover-rec { flex-direction: column; }
+}
+
+/* ============================================
+   HOTSPOT ANALYSIS · 鼠患因子分析
+   ============================================ */
+.hotspot-section {
+  background: var(--paper);
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  padding: 88px 0;
+}
+.hotspot-section .section-eyebrow { color: var(--berry); }
+.hotspot-section .section-eyebrow::before { background: var(--berry); }
+.hotspot-section .section-title em {
+  color: var(--berry);
+  font-style: italic;
+}
+.hotspot-section .section-intro {
+  max-width: 760px;
+  margin-bottom: 56px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.75;
+}
+.hotspot-section .section-intro strong {
+  color: var(--ink);
+}
+
+/* ===== 三個關鍵發現 ===== */
+.ha-keyfindings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 64px;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--ink) 0%, #243224 100%);
+  border-radius: 6px;
+}
+.ha-kf-item {
+  text-align: center;
+  padding: 16px 12px;
+  border-right: 1px solid rgba(244,240,230,0.12);
+}
+.ha-kf-item:last-child { border-right: none; }
+
+.ha-kf-num {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--amber);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.ha-kf-unit {
+  font-size: 32px;
+  font-weight: 600;
+  margin-left: 4px;
+  color: rgba(212, 168, 67, 0.7);
+}
+.ha-kf-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 4px;
+}
+.ha-kf-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(244, 240, 230, 0.55);
+  letter-spacing: 0.02em;
+}
+
+/* ===== 分析卡片(共用) ===== */
+.ha-card {
+  background: var(--paper);
+  border: 1px solid rgba(26, 36, 25, 0.12);
+  border-radius: 6px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+}
+.ha-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(26, 36, 25, 0.08);
+}
+.ha-card-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--berry);
+  font-weight: 700;
+  background: rgba(139, 58, 82, 0.08);
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+.ha-card-head h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.ha-card-desc {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.ha-card-desc strong { color: var(--ink); }
+.ha-card-foot {
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ===== 橫條圖(行政區、關鍵字共用) ===== */
+.ha-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ha-bar {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  align-items: center;
+  font-size: 13px;
+}
+.ha-bar-label {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+.ha-bar-track {
+  background: var(--paper-warm);
+  border-radius: 3px;
+  overflow: hidden;
+  height: 28px;
+  position: relative;
+}
+.ha-bar-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  transition: width 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+  min-width: 38px;
+}
+.bar-hot   { background: linear-gradient(90deg, var(--clay-deep), var(--clay)); }
+.bar-warm  { background: linear-gradient(90deg, #b06434, var(--amber)); color: var(--ink); }
+.bar-mid   { background: linear-gradient(90deg, var(--amber), #d9bc6f); color: var(--ink); }
+.bar-cool  { background: linear-gradient(90deg, var(--moss), var(--moss-bright)); }
+
+/* ===== 半徑分析 grid ===== */
+.ha-radius-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.ha-radius-cell {
+  text-align: center;
+  padding: 24px 20px;
+  background: var(--paper-warm);
+  border-radius: 6px;
+  border: 1px solid rgba(26,36,25,0.06);
+}
+.ha-radius-cell.highlight {
+  background: rgba(139, 58, 82, 0.06);
+  border-color: rgba(139, 58, 82, 0.25);
+}
+.ha-radius-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--berry);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.ha-radius-cell.highlight .ha-radius-num {
+  color: var(--clay);
+  font-size: 42px;
+}
+.ha-radius-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.ha-radius-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ===== 密度比較區塊 ===== */
+.ha-density {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+.ha-density-half {
+  padding: 24px 20px;
+  border-radius: 6px;
+  text-align: center;
+}
+.ha-density-near {
+  background: var(--clay);
+  color: var(--paper);
+}
+.ha-density-far {
+  background: var(--paper-warm);
+  color: var(--ink);
+}
+.ha-density-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+.ha-density-num {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.ha-density-num span {
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+.ha-density-detail {
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: 0.75;
+}
+.ha-density-vs {
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+.ha-density-conclusion {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  text-align: center;
+  padding: 14px 20px;
+  background: rgba(212, 168, 67, 0.12);
+  border-left: 3px solid var(--amber);
+  border-radius: 3px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.ha-density-conclusion strong {
+  color: var(--clay);
+  font-weight: 700;
+}
+
+/* ===== 節點明細表格 ===== */
+.ha-nodes-detail h4 {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.ha-nodes-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.ha-nodes-table thead th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+.ha-nodes-table tbody tr {
+  border-bottom: 1px solid rgba(26,36,25,0.06);
+}
+.ha-nodes-table tbody tr:hover {
+  background: var(--paper-warm);
+}
+.ha-nodes-table td {
+  padding: 12px;
+  color: var(--ink);
+  vertical-align: middle;
+}
+.ha-nodes-table td:nth-child(2),
+.ha-nodes-table td:nth-child(3) {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.ha-nodes-table td strong {
+  color: var(--clay);
+  font-weight: 700;
+}
+
+/* ===== Finding 區塊 ===== */
+.ha-finding {
+  background: rgba(63, 107, 60, 0.06);
+  border-left: 3px solid var(--moss-bright);
+  border-radius: 3px;
+  padding: 16px 22px;
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.ha-finding strong { color: var(--ink); font-weight: 700; }
+.ha-finding em { color: var(--moss-bright); font-style: italic; }
+.ha-finding-label {
+  display: inline-block;
+  background: var(--moss);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ===== 方法論限制聲明 ===== */
+.ha-limits {
+  background: var(--paper-warm);
+  border: 1px dashed rgba(26,36,25,0.2);
+  border-radius: 6px;
+  padding: 32px 36px;
+  margin-top: 40px;
+}
+.ha-limits h4 {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.ha-limits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+.ha-limits li {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  padding: 8px 0 8px 20px;
+  position: relative;
+  border-bottom: 1px dotted rgba(26,36,25,0.08);
+}
+.ha-limits li:last-child { border-bottom: none; }
+.ha-limits li::before {
+  content: '·';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  color: var(--berry);
+  font-weight: 700;
+}
+.ha-limits li strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.ha-limits-note {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.6;
+  padding-top: 12px;
+  border-top: 1px solid rgba(26,36,25,0.1);
+}
+.ha-limits-note a {
+  color: var(--moss-bright);
+  text-decoration: underline;
+}
+.ha-data-attribution {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(26,36,25,0.08);
+  line-height: 1.6;
+}
+.ha-data-attribution a {
+  color: var(--moss);
+  text-decoration: underline;
+}
+
+/* ===== 響應式 ===== */
+@media (max-width: 768px) {
+  .hotspot-section { padding: 56px 0; }
+  .ha-keyfindings {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 24px;
+  }
+  .ha-kf-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(244,240,230,0.12);
+    padding: 20px 0;
+  }
+  .ha-kf-item:last-child { border-bottom: none; }
+  .ha-kf-num { font-size: 44px; }
+  .ha-card { padding: 24px 22px; }
+  .ha-card-head h3 { font-size: 19px; }
+  .ha-bar { grid-template-columns: 70px 1fr; gap: 10px; font-size: 12px; }
+  .ha-bar-track { height: 24px; }
+  .ha-radius-grid { grid-template-columns: 1fr; gap: 10px; }
+  .ha-radius-num { font-size: 32px; }
+  .ha-density { grid-template-columns: 1fr; }
+  .ha-density-vs { padding: 4px 0; }
+  .ha-density-num { font-size: 32px; }
+  .ha-nodes-table { font-size: 11px; }
+  .ha-nodes-table th,
+  .ha-nodes-table td { padding: 8px 6px; }
+  .ha-limits { padding: 22px 20px; }
 }
 
 /* ============================================
@@ -1474,6 +2291,147 @@ section {
 }
 
 /* ============================================
+   PHOTO UPLOAD · 通報拍照
+   ============================================ */
+.photo-row .optional-hint {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-left: 6px;
+  font-family: var(--mono);
+}
+
+.photo-upload-area {
+  border: 2px dashed rgba(26, 36, 25, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--paper-warm);
+  transition: all 0.2s;
+  position: relative;
+}
+.photo-upload-area.has-photo {
+  border-style: solid;
+  border-color: var(--moss);
+  background: rgba(107, 142, 90, 0.04);
+  padding: 12px;
+}
+.photo-upload-area.is-uploading { border-color: var(--amber); }
+.photo-upload-area.has-error { border-color: var(--clay); }
+
+.photo-pick-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 14px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.photo-pick-btn:hover { color: var(--moss); }
+.photo-pick-btn svg { color: currentColor; }
+.has-photo .photo-pick-btn { display: none; }
+
+.photo-preview {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.photo-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: var(--ink);
+}
+.photo-preview-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  padding: 4px 0;
+}
+.photo-preview-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.photo-preview-meta .filename {
+  font-weight: 600;
+  color: var(--ink);
+  word-break: break-all;
+  display: block;
+  margin-bottom: 4px;
+}
+.photo-remove-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--clay);
+  color: var(--clay);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.photo-remove-btn:hover {
+  background: var(--clay);
+  color: var(--paper);
+}
+
+.photo-status {
+  font-family: var(--mono);
+  font-size: 11px;
+  margin-top: 8px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.photo-status.success { color: var(--moss); }
+.photo-status.error { color: var(--clay); }
+.photo-status.processing { color: var(--amber); }
+
+@media (max-width: 480px) {
+  .photo-preview {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .photo-preview img {
+    width: 100%;
+    height: 200px;
+  }
+  .photo-preview-info {
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Popup 顯示照片 */
+.popup-photo {
+  width: 100%;
+  max-width: 240px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 8px 0;
+  background: var(--ink);
+  display: block;
+}
+
+/* ============================================
    IPM FIVE STRATEGIES
    ============================================ */
 .ipm-section {
@@ -1575,6 +2533,326 @@ section {
   font-family: var(--sans);
   font-size: 14px;
   color: rgba(244, 240, 230, 0.85);
+}
+
+/* ============================================
+   CAT-RAT INQUIRY · Scientific multi-perspective
+   ============================================ */
+.inquiry-section {
+  background: var(--paper);
+  border-top: var(--rule);
+  position: relative;
+}
+
+.inquiry-question {
+  margin: 40px 0 56px;
+  padding: 36px 44px;
+  background: var(--paper-warm);
+  border-left: 5px solid var(--moss);
+  border-radius: 4px;
+}
+.inquiry-question .q-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--moss);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.inquiry-question h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.3;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.inquiry-question h3 .en {
+  display: block;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* Three perspectives grid */
+.perspectives {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+.perspective {
+  background: var(--paper);
+  border: 2px solid var(--bd, var(--ink));
+  border-radius: 6px;
+  padding: 28px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.perspective.p-yes { --bd: var(--moss); --acc: var(--moss); }
+.perspective.p-no { --bd: var(--clay); --acc: var(--clay); }
+.perspective.p-mid { --bd: var(--sky); --acc: var(--sky); }
+
+.perspective::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px;
+  width: 60px;
+  height: 6px;
+  background: var(--acc);
+  border-radius: 4px 0 0 0;
+}
+
+.perspective .p-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--acc);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.perspective h4 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.perspective h4 .en {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+.perspective .p-summary {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.perspective .citation {
+  background: var(--paper-warm);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--acc);
+  margin-bottom: 14px;
+}
+.perspective .citation .cite-author {
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+  display: block;
+  font-family: var(--serif);
+  font-size: 13px;
+}
+.perspective .citation .cite-detail {
+  font-style: italic;
+}
+.perspective .citation .cite-finding {
+  margin-top: 6px;
+  display: block;
+}
+
+.perspective .p-takeaway {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--acc);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* Synthesis box */
+.synthesis {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 40px 44px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.synthesis::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n3)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.synthesis-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--amber);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 14px;
+  position: relative;
+}
+.synthesis h3 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.25;
+  color: var(--paper);
+  margin-bottom: 20px;
+  position: relative;
+}
+.synthesis h3 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.synthesis-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+}
+.synthesis-body p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(244, 240, 230, 0.85);
+}
+.synthesis-body p + p { margin-top: 14px; }
+.synthesis-body strong {
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.synthesis-points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.synthesis-point {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.synthesis-point .mark {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(212, 168, 67, 0.15);
+  border: 1px solid var(--amber);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+}
+.synthesis-point .text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(244, 240, 230, 0.85);
+}
+.synthesis-point .text strong {
+  color: var(--paper);
+  font-weight: 700;
+}
+
+/* Ethics callout */
+.ethics-note {
+  margin-top: 40px;
+  padding: 24px 32px;
+  background: var(--paper-warm);
+  border: 1px dashed var(--ink-soft);
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: flex-start;
+}
+.ethics-note .heart {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--berry);
+  flex-shrink: 0;
+}
+.ethics-note .body h5 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.ethics-note .body p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* Reference list */
+.reference-list {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: var(--rule-soft);
+}
+.reference-list h6 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+.reference-list ol {
+  margin: 0;
+  padding-left: 20px;
+  list-style: decimal;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.reference-list ol li {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.reference-list ol li a {
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--moss);
+}
+
+@media (max-width: 1024px) {
+  .perspectives { grid-template-columns: 1fr; gap: 16px; }
+  .synthesis-body { grid-template-columns: 1fr; gap: 24px; }
+  .inquiry-question { padding: 28px 32px; }
+  .inquiry-question h3 { font-size: 24px; }
+  .synthesis { padding: 32px; }
+  .synthesis h3 { font-size: 24px; }
+}
+@media (max-width: 640px) {
+  .ethics-note { grid-template-columns: 1fr; }
+  .inquiry-question { padding: 22px 24px; }
+  .inquiry-question h3 { font-size: 20px; }
 }
 
 /* ============================================
@@ -2128,6 +3406,16 @@ section {
 <body>
 
 <!-- ============================================
+     DEMO BANNER · 示範資料公告
+     ============================================ -->
+<div class="demo-banner" id="demoBanner">
+  <strong>⚠ 示範階段</strong>
+  本平台目前展示的通報數字、街貓 TNR 紀錄、與部分廚餘節點座標為<strong>模擬示範資料</strong>(地圖上以 <code>[示範]</code> 標示)。
+  廚餘政策論述與見鼠地圖夥伴連結為真實內容。歡迎透過下方公民通報系統累積真實資料。
+  <button class="close" id="demoBannerClose" aria-label="關閉公告">✕</button>
+</div>
+
+<!-- ============================================
      MASTHEAD
      ============================================ -->
 <header class="masthead">
@@ -2145,12 +3433,13 @@ section {
       </div>
     </a>
     <nav class="nav-links">
+      <a href="#prologue">前言</a>
       <a href="#problem">問題現況</a>
       <a href="#leftover">廚餘×鼠患</a>
-      <a href="#onehealth">One Health</a>
+      <a href="#hotspot-analysis">熱區分析</a>
       <a href="#platform">即時地圖</a>
-      <a href="#report">回報通報</a>
       <a href="#ipm">IPM 策略</a>
+      <a href="#inquiry">街貓研究</a>
     </nav>
     <div class="nav-cta">
       <span class="lang">中文 / EN</span>
@@ -2170,10 +3459,10 @@ section {
      ============================================ -->
 <section id="top" class="hero">
   <div class="hero-meta">
-    <span>● LIVE · 系統運作中</span>
+    <span>● DEMO · 示範資料展示</span>
     <span>2026.05.05 · 台北市</span>
     <span>v 1.0 · 公民科學版本</span>
-    <span style="margin-left:auto;">資料更新:每 5 分鐘</span>
+    <span style="margin-left:auto;">真實通報待累積中</span>
   </div>
 
   <div class="hero-grid">
@@ -2199,24 +3488,140 @@ section {
 
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hero-stat-label">本月鼠患通報</div>
+      <div class="hero-stat-label">本月鼠患通報 <span style="color:var(--clay);font-weight:700;">[示範]</span></div>
       <div class="hero-stat-value">1,284<span class="unit">件</span></div>
-      <div class="hero-stat-trend trend-up">▲ 較去年 +287%</div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">模擬數字 · 真實通報請見見鼠地圖</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">每日廚餘量</div>
+      <div class="hero-stat-label">每日廚餘量 <span style="color:var(--moss);font-weight:700;">[實]</span></div>
       <div class="hero-stat-value">145<span class="unit">公噸</span></div>
-      <div class="hero-stat-trend trend-up">▲ 紅藍桶取消後</div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">資料來源:議員質詢 · 130-160 噸區間</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">北投廠暫置量</div>
+      <div class="hero-stat-label">北投廠暫置量 <span style="color:var(--amber);font-weight:700;">[估]</span></div>
       <div class="hero-stat-value">580<span class="unit">公噸</span></div>
-      <div class="hero-stat-trend trend-up">▲ 含洲美露天區</div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">推估值 · 暫置現象屬實,精確量待查</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-label">街貓巡守</div>
+      <div class="hero-stat-label">街貓巡守 <span style="color:var(--clay);font-weight:700;">[示範]</span></div>
       <div class="hero-stat-value">347<span class="unit">隻 TNR</span></div>
-      <div class="hero-stat-trend trend-up">▲ 新增 18 隻</div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">模擬數字 · 實際 TNR 請洽動保處</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;padding:14px 20px;background:var(--paper-warm);border-left:3px solid var(--amber);font-size:13px;line-height:1.7;color:var(--ink-soft);border-radius:3px;">
+    <strong style="color:var(--ink);">關於這些數字</strong> ·
+    本平台目前處於示範階段。
+    <span style="color:var(--clay);font-weight:600;">[示範]</span> 為模擬資料,
+    <span style="color:var(--moss);font-weight:600;">[實]</span> 為已查證的真實數值,
+    <span style="color:#a87729;font-weight:600;">[估]</span> 為依公開資訊推估。
+    真實鼠患通報請見 <a href="#ally" style="color:var(--moss);font-weight:600;border-bottom:1px dotted var(--moss);text-decoration:none;">見鼠地圖夥伴平台 ↓</a>。
+  </div>
+</section>
+
+<!-- ============================================
+     PROLOGUE · 個人前言
+     ============================================ -->
+<section id="prologue" class="prologue-section">
+  <div class="prologue-shell">
+    <div class="prologue-eyebrow">▲ 一封來自台北市民的信</div>
+
+    <h2 class="prologue-greeting">
+      您好,我是一個<span class="accent">普通的台北市民</span>,<br>
+      愛貓也愛狗。
+    </h2>
+
+    <div class="prologue-body">
+      <p class="lead">
+        最近台北的鼠患新聞讓我擔心。但坦白說,我擔心的不是衛生問題本身——
+        而是當城市開始大規模投藥,那些在巷弄裡被照顧的浪貓、
+        在公園盤旋的鳳頭蒼鷹、甚至有人家裡的狗,會因為二級中毒
+        一隻一隻倒下。
+      </p>
+
+      <p>
+        我住的社區裡,就有好幾隻被認養與照顧的街貓。
+        鄰居們對牠們很好——有人在巷口放飲水盤,有人冬天放紙箱,
+        有人會默默結紮並帶回原地放養(TNR)。
+      </p>
+
+      <div class="cat-list">
+        <div class="cat-list-label">▲ 我們社區的居民</div>
+        <div class="cat-list-names">
+          牠們各自有名字,各有各的脾氣<span class="prologue-paw">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;color:var(--moss);">
+              <ellipse cx="6" cy="10" rx="2" ry="2.5"/>
+              <ellipse cx="18" cy="10" rx="2" ry="2.5"/>
+              <ellipse cx="9" cy="6" rx="1.8" ry="2.2"/>
+              <ellipse cx="15" cy="6" rx="1.8" ry="2.2"/>
+              <ellipse cx="12" cy="16" rx="4.5" ry="3.5"/>
+            </svg>
+          </span>
+        </div>
+        <div class="cat-list-note">
+          全部都做過 TNR、剪了左耳。鄰居默契地一起照顧著。
+        </div>
+      </div>
+
+      <p>
+        然後我發現一件有意思的事:
+        <strong>我們這條街幾乎沒看過老鼠。</strong>
+        我不確定是因為街貓真的把鼠群嚇住了,還是我們社區
+        的環境衛生本來就比較好——但我知道:當這些貓還在這裡,
+        我們這條街的氛圍是安心的。
+      </p>
+
+      <div class="prologue-pullquote">
+        我擔心的是,如果哪一天市政府為了「除鼠」開始無差別灑毒,
+        我會看著這些有名字的貓一隻一隻倒下。
+      </div>
+
+      <p>
+        所以我做了 EcoSentinel。
+      </p>
+
+      <p>
+        我不是學者、也不是公務員、很久沒當工程師了。我只是一個
+        會在新聞裡看到「鼠患暴增」就睡不好的市民,我想用我會的方式
+        ——查資料、拼湊論述、做一個說得清楚的網站——
+        讓更多人一起想:<em>2026 年的鼠患,可能有種種原因,
+        或許是都更——但有沒有可能,是廚餘處理量能跟不上
+        禁餵豬政策的時程?</em>
+      </p>
+
+      <p>
+        也想跟更多人一起想想:<strong>毒餌真的是解決鼠患的捷徑嗎</strong>?
+        還是只是把問題從「人看得見的老鼠」,轉嫁到了
+        「人看不見的中毒街貓、夜鷺、家中寵物」?
+      </p>
+
+      <p>
+        如果你也曾經因為某隻街貓的存在而覺得這條街溫暖一點,
+        如果你也曾經擔心過家裡的狗會不會吃到毒餌——
+        歡迎留下你的觀察、你的通報、你的故事。這個平台是為你做的。
+      </p>
+
+      <div style="margin: 32px 0; display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="https://forms.gle/f8mAFN8KkBYN6GKR8" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;background:var(--clay);color:var(--paper);padding:14px 26px;font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:0.04em;text-decoration:none;border-radius:4px;transition:all 0.2s;">
+          ✉ 留下你的訊息
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M7 7h10v10"/>
+          </svg>
+        </a>
+        <a href="#platform"
+           style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);padding:14px 26px;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:0.04em;text-decoration:none;border:1px solid var(--ink);border-radius:4px;transition:all 0.15s;">
+          看看地圖
+        </a>
+      </div>
+
+      <div class="prologue-sign">
+        <div class="prologue-sign-name">— 一位台北市民</div>
+        <div class="prologue-sign-meta">
+          愛貓人 · 愛狗人<br>
+          EcoSentinel 發起人 · 2026
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2531,6 +3936,194 @@ section {
 </section>
 
 <!-- ============================================
+     HOTSPOT ANALYSIS · 鼠患因子分析
+     用見鼠地圖 510 筆台北市真實通報資料,做空間關聯與成因探究
+     ============================================ -->
+<section id="hotspot-analysis" class="hotspot-section">
+  <div class="section-shell">
+    <div class="section-eyebrow">▲ 數據分析 · 因子探究</div>
+    <h2 class="section-title">熱區因子分析 · <em>鼠患從哪裡來?</em></h2>
+    <p class="section-intro">
+      以見鼠地圖 <strong>510 筆台北市真實通報</strong>(2026/5/1–5/6)為基礎,結合 EcoSentinel 整理的 8 個廚餘節點座標,
+      做空間關聯分析。<strong>目的不是行銷,是探究成因</strong>——以利精準防治。
+    </p>
+
+    <!-- ============ 1. 三個關鍵發現(大字呈現) ============ -->
+    <div class="ha-keyfindings">
+      <div class="ha-kf-item">
+        <div class="ha-kf-num">3.3<span class="ha-kf-unit">×</span></div>
+        <div class="ha-kf-label">廚餘節點 1km 內鼠患密度</div>
+        <div class="ha-kf-sub">是其他區域的 3.3 倍</div>
+      </div>
+      <div class="ha-kf-item">
+        <div class="ha-kf-num">29.6<span class="ha-kf-unit">%</span></div>
+        <div class="ha-kf-label">通報描述提到「老舊建築/管線」</div>
+        <div class="ha-kf-sub">是最大成因線索</div>
+      </div>
+      <div class="ha-kf-item">
+        <div class="ha-kf-num">12<span class="ha-kf-unit">×</span></div>
+        <div class="ha-kf-label">行政區密度差距</div>
+        <div class="ha-kf-sub">信義 7.2 vs 北投 0.5 筆/km²</div>
+      </div>
+    </div>
+
+    <!-- ============ 2. 行政區密度排行 ============ -->
+    <div class="ha-card">
+      <div class="ha-card-head">
+        <div class="ha-card-num">01</div>
+        <h3>行政區鼠患密度排行</h3>
+      </div>
+      <p class="ha-card-desc">
+        以「鼠患通報數 ÷ 行政區面積」標準化(單位:筆/km²)。
+        前段 6 區是核心都會區,後段 6 區大多包含山地或低開發強度區。
+      </p>
+      <div class="ha-bars">
+        <div class="ha-bar"><span class="ha-bar-label">信義區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:100%"><span>7.23</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">松山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:90.9%"><span>6.57</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">大安區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:77.9%"><span>5.63</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">中正區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:76.4%"><span>5.52</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">萬華區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:67.2%"><span>4.86</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">中山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:60.7%"><span>4.39</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">大同區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:46.3%"><span>3.35</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">內湖區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:12.3%"><span>0.89</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">文山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:11.9%"><span>0.86</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">南港區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:11.3%"><span>0.82</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">士林區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:8.7%"><span>0.63</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">北投區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:6.8%"><span>0.49</span></div></div></div>
+      </div>
+      <div class="ha-card-foot">
+        筆/km² · 計算基礎:行政區公開面積。實際「人類活動面積」可能更小(山地、行水區),前段差距可能再被低估。
+      </div>
+    </div>
+
+    <!-- ============ 3. 廚餘 × 鼠患空間關聯 ============ -->
+    <div class="ha-card">
+      <div class="ha-card-head">
+        <div class="ha-card-num">02</div>
+        <h3>廚餘節點 × 鼠患通報的空間關聯</h3>
+      </div>
+      <p class="ha-card-desc">
+        以 EcoSentinel 整理的 8 個廚餘節點為圓心,測量不同半徑內的通報集中度。
+        若廚餘與鼠患無關,通報應隨機分布;但實際上資料顯示明顯的<strong>空間集中</strong>。
+      </p>
+
+      <div class="ha-radius-grid">
+        <div class="ha-radius-cell">
+          <div class="ha-radius-num">6.5%</div>
+          <div class="ha-radius-text">通報集中於廚餘節點 <strong>0.5 km</strong> 內<br>(33 筆 / 510)</div>
+        </div>
+        <div class="ha-radius-cell highlight">
+          <div class="ha-radius-num">24.9%</div>
+          <div class="ha-radius-text">通報集中於廚餘節點 <strong>1 km</strong> 內<br>(127 筆 / 510)</div>
+        </div>
+        <div class="ha-radius-cell">
+          <div class="ha-radius-num">66.1%</div>
+          <div class="ha-radius-text">通報集中於廚餘節點 <strong>2 km</strong> 內<br>(337 筆 / 510)</div>
+        </div>
+      </div>
+
+      <div class="ha-density">
+        <div class="ha-density-half ha-density-near">
+          <div class="ha-density-label">廚餘節點 1 km 內</div>
+          <div class="ha-density-num">5.1 <span>筆/km²</span></div>
+          <div class="ha-density-detail">127 筆 / 約 25 km²</div>
+        </div>
+        <div class="ha-density-vs">vs</div>
+        <div class="ha-density-half ha-density-far">
+          <div class="ha-density-label">廚餘節點 1 km 外</div>
+          <div class="ha-density-num">1.6 <span>筆/km²</span></div>
+          <div class="ha-density-detail">383 筆 / 約 247 km²</div>
+        </div>
+      </div>
+      <div class="ha-density-conclusion">
+        ↳ 廚餘節點 1km 內的鼠患通報密度,是其他區域的 <strong>3.3 倍</strong>。
+      </div>
+
+      <div class="ha-nodes-detail">
+        <h4>各廚餘節點 1km 內鼠患通報數</h4>
+        <table class="ha-nodes-table">
+          <thead>
+            <tr><th>節點</th><th>處理量</th><th>1km 內鼠患</th><th>觀察</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>萬華清潔隊轉運站</td><td>14 t/d</td><td><strong>29</strong></td><td>都會密集巷弄</td></tr>
+            <tr><td>大同清潔隊轉運站</td><td>12 t/d</td><td>26</td><td>老舊住商混合</td></tr>
+            <tr><td>松山清潔隊轉運站</td><td>11 t/d</td><td>21</td><td>商圈密度高</td></tr>
+            <tr><td>大安清潔隊轉運站</td><td>15 t/d</td><td>19</td><td>市場+夜市</td></tr>
+            <tr><td>信義清潔隊轉運站</td><td>6 t/d</td><td>18</td><td>商圈+老巷</td></tr>
+            <tr><td>北投焚化廠 · 洲美露天區</td><td><strong>580 t/d</strong></td><td>7</td><td>處理量最大,但周邊住戶少</td></tr>
+            <tr><td>內湖清潔隊轉運站</td><td>10 t/d</td><td>4</td><td>科技園區、人口分散</td></tr>
+            <tr><td>木柵堆肥場</td><td>25 t/d</td><td>3</td><td>位於低開發強度區</td></tr>
+          </tbody>
+        </table>
+        <p class="ha-finding">
+          <span class="ha-finding-label">值得注意</span>
+          北投焚化廠處理量是其他節點的 50–100 倍,但 1km 內鼠患通報只 7 筆——
+          意味著「<strong>處理量本身不是直接因子,鄰近人口密度與都市結構才是</strong>」。
+          這提示精準防治的優先順序:應該優先處理「<strong>高密度都會區的小型清潔隊轉運站</strong>」,
+          而非以為「處理大廠周邊就最嚴重」。
+        </p>
+      </div>
+    </div>
+
+    <!-- ============ 4. 通報描述關鍵字分析 ============ -->
+    <div class="ha-card">
+      <div class="ha-card-head">
+        <div class="ha-card-num">03</div>
+        <h3>通報描述關鍵字 · 成因線索</h3>
+      </div>
+      <p class="ha-card-desc">
+        從 510 筆通報的「說明」文字提取關鍵字,看通報者實際描述的環境特徵。
+        這些不是統計上的成因(相關不等於因果),但能揭示<strong>市民眼中的鼠患現場樣貌</strong>。
+      </p>
+      <div class="ha-bars ha-bars-keyword">
+        <div class="ha-bar"><span class="ha-bar-label">建築/管線</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:100%"><span>29.6%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">公園綠地</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:48.3%"><span>14.3%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">排水/下水道</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:41.2%"><span>12.2%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">廚餘垃圾</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:39.9%"><span>11.8%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">住家</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:27.7%"><span>8.2%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">市場</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:19.9%"><span>5.9%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">車站交通</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:14.5%"><span>4.3%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">餐飲</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:12.5%"><span>3.7%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">學校</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:4.7%"><span>1.4%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">醫院</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:2.0%"><span>0.6%</span></div></div></div>
+      </div>
+      <p class="ha-finding">
+        <span class="ha-finding-label">與直覺不符的發現</span>
+        市場僅佔 5.9%、餐飲 3.7%——遠低於直覺認知。<strong>最大的成因線索是「老舊建築與管線」(29.6%)</strong>,
+        這跟生態學文獻中「<em>棲息地結構>食源</em>」的主張一致:
+        老鼠是高度適應人造環境的動物,管線、牆縫、天花板提供安全棲息地,才是無法移除的核心因子。
+        這提示防治方向不只是「清除食源」,更要從<strong>建築修繕</strong>(封堵縫隙、管線整治)切入。
+      </p>
+    </div>
+
+    <!-- ============ 5. 方法論限制聲明 ============ -->
+    <div class="ha-limits">
+      <h4>▲ 方法論限制聲明</h4>
+      <ul>
+        <li><strong>時間樣本短:</strong>僅 6 天通報期(2026/5/1–5/6)。可能受特定事件或新聞報導影響,不能代表長期趨勢。</li>
+        <li><strong>通報偏誤(Report Bias):</strong>「通報多 ≠ 鼠患多」。信義/大安通報密集,可能反映「住戶網路熟悉度」而非實際密度。</li>
+        <li><strong>相關不是因果:</strong>廚餘節點與鼠患在空間上有關聯,但無法證明廚餘是直接成因。可能兩者都是「人口密度高、都市老舊」這個共同因子的結果。</li>
+        <li><strong>廚餘節點清單不完整:</strong>本分析使用 EcoSentinel 自行整理的 8 個節點(2 個 100% 確認、6 個查證中)。實際垃圾收集點、廚餘暫存定點未納入。</li>
+        <li><strong>關鍵字分析是粗略指標:</strong>同一篇描述可能含多個關鍵字、可能誤判(例如「在公園附近的下水道」會被同時計入兩類)。僅供成因方向判斷,不適合精準量化。</li>
+        <li><strong>面積分母粗略:</strong>使用行政區公開面積,未排除山地、行水區、軍事用地等不適人居處。實際密度差距可能更大。</li>
+      </ul>
+      <p class="ha-limits-note">
+        我們公開所有方法、資料來源、限制——歡迎研究者、議員、媒體引用前先閱讀本聲明。
+        若您有更完整的資料(垃圾收集點、市場稽查、屋齡分布)願意分享以強化分析,
+        歡迎透過<a href="https://forms.gle/f8mAFN8KkBYN6GKR8" target="_blank" rel="noopener">聯絡表單</a>聯繫。
+      </p>
+      <p class="ha-data-attribution">
+        資料來源:<a href="https://ratdar.taipei/" target="_blank" rel="noopener">見鼠地圖 ratdar.taipei</a> 公開通報(2026/5/1–5/6,510 筆台北市資料) ·
+        分析方法:Haversine 球面距離 + 文字關鍵字頻次 ·
+        最後更新:2026/5/6
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================
      ONE HEALTH
      ============================================ -->
 <section id="onehealth" class="onehealth-section">
@@ -2617,13 +4210,13 @@ section {
 
     <div class="dashboard-frame">
       <div class="dashboard-bar">
-        <span class="dot"></span>
-        <span class="live">LIVE</span>
-        <span class="path">/ ecosentinel.taipei / map / realtime</span>
+        <span class="dot" style="background:var(--amber);box-shadow:0 0 8px var(--amber);"></span>
+        <span class="live" style="color:var(--amber);">DEMO</span>
+        <span class="path">/ ecosentinel.taipei / map / showcase</span>
         <div class="meta-right">
-          <span>• 24h 內新增:47 筆</span>
-          <span>• 監測涵蓋:12 行政區</span>
-          <span>• 上次同步:30 秒前</span>
+          <span>• 26 筆示範資料</span>
+          <span>• 廚餘節點待查證</span>
+          <span>• 等待真實通報累積</span>
         </div>
       </div>
 
@@ -2827,6 +4420,35 @@ section {
             <textarea id="descInput" placeholder="請描述您看到的情況,例如數量、行為、環境衛生狀況等..."></textarea>
           </div>
 
+          <div class="form-row full photo-row">
+            <label>
+              照片(選填)
+              <span class="optional-hint">· 上傳照片有助提高通報可信度</span>
+            </label>
+            <div class="photo-upload-area" id="photoUploadArea">
+              <input type="file"
+                     id="photoInput"
+                     accept="image/jpeg,image/png,image/webp"
+                     capture="environment"
+                     style="display:none;">
+              <button type="button" class="photo-pick-btn" id="photoPickBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <span>拍照或選擇照片</span>
+              </button>
+              <div class="photo-preview" id="photoPreview" style="display:none;">
+                <img id="photoPreviewImg" alt="預覽">
+                <div class="photo-preview-info">
+                  <div class="photo-preview-meta" id="photoPreviewMeta"></div>
+                  <button type="button" class="photo-remove-btn" id="photoRemoveBtn">移除</button>
+                </div>
+              </div>
+              <div class="photo-status" id="photoStatus"></div>
+            </div>
+          </div>
+
           <div class="form-row">
             <label>聯絡方式(選填)</label>
             <input type="email" id="contactInput" placeholder="email · 後續追蹤可聯絡您">
@@ -2976,6 +4598,213 @@ section {
 </section>
 
 <!-- ============================================
+     CAT-RAT INQUIRY · 街貓 × 鼠患研究
+     ============================================ -->
+<section id="inquiry" class="inquiry-section">
+  <div class="section-shell">
+    <div class="section-eyebrow">▲ 進階研究</div>
+    <h2 class="section-title">街貓真的能抑制鼠患嗎?<em>科學上怎麼說。</em></h2>
+    <p class="section-intro">
+      「養貓抓老鼠」是千年常識,還是迷思?這個問題的研究結論其實比想像中複雜。
+      EcoSentinel 不打算給你簡單答案——我們把支持、質疑、與折衷三派的真實研究攤開來,
+      讓你自己判斷。<strong>因為科學治理的第一步,是面對真相。</strong>
+    </p>
+
+    <div class="inquiry-question">
+      <div class="q-label">▶ 核心提問</div>
+      <h3>
+        「街貓 = 鼠患天然防治者」這個直覺,經得起實證檢驗嗎?
+        <span class="en">Does feline presence actually suppress urban rat populations?</span>
+      </h3>
+    </div>
+
+    <!-- Three perspectives -->
+    <div class="perspectives">
+
+      <!-- Perspective 1: Yes, but limited -->
+      <div class="perspective p-yes">
+        <div class="p-tag">▲ 觀點一 · 部分支持</div>
+        <h4>嚇阻效應確實存在<span class="en">Deterrence Through Fear</span></h4>
+        <p class="p-summary">
+          街貓即使不真的捕食,氣味與存在本身就會改變鼠群行為——鼠類會躲洞穴更久、活動範圍縮小、
+          覓食時間變短。這是「恐懼地景」(landscape of fear)效應。
+        </p>
+        <div class="citation">
+          <span class="cite-author">Mahlaba et al. (2017)</span>
+          <span class="cite-detail">南非鄉村 40 個農戶研究</span>
+          <span class="cite-finding">
+            ◆ 貓+狗同時存在的農戶,鼠類活動顯著下降。但<strong>單獨只有貓 或 只有狗,效果並不顯著</strong>。
+          </span>
+        </div>
+        <div class="citation">
+          <span class="cite-author">Parsons et al. (2018)</span>
+          <span class="cite-detail">紐約布魯克林行為觀察</span>
+          <span class="cite-finding">
+            ◆ 鼠類在貓出現時會「高估風險」,改變空間使用模式,即使貓並未真的攻擊。
+          </span>
+        </div>
+        <div class="p-takeaway">
+          → 街貓確實影響鼠群行為,但「行為改變」≠「族群減少」
+        </div>
+      </div>
+
+      <!-- Perspective 2: No, ineffective -->
+      <div class="perspective p-no">
+        <div class="p-tag">▼ 觀點二 · 質疑效果</div>
+        <h4>對成年大鼠幾乎無效<span class="en">Cats Rarely Hunt Adult Rats</span></h4>
+        <p class="p-summary">
+          學界共識:街貓偏好捕食體重 250 克以下的小型獵物。台灣常見的褐家鼠成體重達 250-500 克,
+          甚至比小型街貓還大。實證研究顯示捕食事件極為罕見。
+        </p>
+        <div class="citation">
+          <span class="cite-author">Parsons et al. (2018)</span>
+          <span class="cite-detail">Frontiers in Ecology · 紐約布魯克林</span>
+          <span class="cite-finding">
+            ◆ 80 天內 306 段紅外線影片,觀察到 <strong>20 次跟蹤、僅 3 次成功捕殺</strong>。
+            研究結論:「貓對都市鼠類族群幾乎無影響」。
+          </span>
+        </div>
+        <div class="citation">
+          <span class="cite-author">Glass et al. (2009) 文獻回顧</span>
+          <span class="cite-detail">綜合多份研究結論</span>
+          <span class="cite-finding">
+            ◆ 「貓對鼠群的捕食相對罕見,不太可能抑制鼠群數量」。
+            街貓更傾向獵捕小型鳥類與爬蟲。
+          </span>
+        </div>
+        <div class="p-takeaway">
+          → 期待街貓「除鼠」可能是一廂情願,且代價是本土鳥類受害
+        </div>
+      </div>
+
+      <!-- Perspective 3: Middle ground -->
+      <div class="perspective p-mid">
+        <div class="p-tag">◆ 觀點三 · 折衷整合</div>
+        <h4>有條件的有限效益<span class="en">Conditional, Context-Dependent</span></h4>
+        <p class="p-summary">
+          街貓對<strong>幼鼠、小型鼠</strong>(< 250g)有實質捕食效果。雞舍實驗顯示貓的氣味
+          能降低鼠類進食量。但需與環境管理(食源清除)組合才顯效——單獨用街貓如同緣木求魚。
+        </p>
+        <div class="citation">
+          <span class="cite-author">Crawford et al. (2025)</span>
+          <span class="cite-detail">澳洲乳牛場田調 + 對立觀點交鋒</span>
+          <span class="cite-finding">
+            ◆ 確認貓在農場有實際抑鼠價值,但前提是<strong>「結構化、人道管理」</strong>的工作貓族群,
+            而非未管理的野貓群。
+          </span>
+        </div>
+        <div class="citation">
+          <span class="cite-author">McCleery et al. (2017)</span>
+          <span class="cite-detail">Science Daily 跨國研究</span>
+          <span class="cite-finding">
+            ◆ 「貓+狗組合」最能減少鼠類靠近民居儲糧;單獨任一種通常無效。
+          </span>
+        </div>
+        <div class="p-takeaway">
+          → 街貓是 IPM 工具箱的一環,但絕非萬靈丹
+        </div>
+      </div>
+    </div>
+
+    <!-- Synthesis -->
+    <div class="synthesis">
+      <div class="synthesis-eyebrow">▲ EcoSentinel 的綜合解讀</div>
+      <h3>不論街貓效果如何,根源仍是<em>食源管理</em>。</h3>
+      <div class="synthesis-body">
+        <div>
+          <p>
+            從這些研究看,「街貓抑制鼠患」的真相介於兩個極端之間:
+            街貓<strong>不會像神奇除鼠器一樣讓鼠群消失</strong>,但牠們的存在確實
+            改變鼠群行為、對小型鼠類有捕食效果、且作為 IPM 框架中的一環,
+            比毒餌更生態友善。
+          </p>
+          <p>
+            真正的答案是:<strong>2026 年初台北鼠患暴增,不是「街貓不夠多」造成的</strong>,
+            而是廚餘暫置政策導致食源大量供應。當食源穩定,任何天敵壓力都壓不住族群擴張。
+          </p>
+          <p>
+            這也呼應了 Parsons 博士的訪談:「我們必須讓城市本身,
+            透過減少廚餘廢棄物,來讓鼠群自我管理。」
+          </p>
+        </div>
+        <div class="synthesis-points">
+          <div class="synthesis-point">
+            <div class="mark">A</div>
+            <div class="text">
+              <strong>支持 TNR,</strong> 不是因為街貓是「除鼠工具」,
+              而是因為這是對動物與生態整體的尊重
+            </div>
+          </div>
+          <div class="synthesis-point">
+            <div class="mark">B</div>
+            <div class="text">
+              <strong>反對毒餌,</strong> 因為它對天敵(街貓、猛禽、寵物)
+              的二級中毒風險,遠大於對鼠群的長期控制效果
+            </div>
+          </div>
+          <div class="synthesis-point">
+            <div class="mark">C</div>
+            <div class="text">
+              <strong>聚焦廚餘節點,</strong> 因為食源管理才是根源——
+              這是 IPM 五大策略中最有效、最被忽略的一環
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ethics note -->
+    <div class="ethics-note">
+      <div class="heart">"</div>
+      <div class="body">
+        <h5>關於街貓的尊重</h5>
+        <p>
+          街貓不是「除鼠工具」,牠們是有意識、會痛、會思念的生命。
+          當我們討論「街貓對鼠患的效益」時,容易落入工具化的視角——
+          但街貓存在的意義遠超過這個。EcoSentinel 倡議 TNR 街貓巡守,
+          不是因為效益計算,而是因為城市本來就是人類、街貓、野生動物
+          共同的家。我們爭取的是讓所有生命都能安心的城市,而不是讓某一種生命服務另一種。
+        </p>
+      </div>
+    </div>
+
+    <!-- References -->
+    <div class="reference-list">
+      <h6>▲ 參考文獻 References</h6>
+      <ol>
+        <li>
+          Parsons, M. H., Banks, P. B., Deutsch, M. A., &amp; Munshi-South, J. (2018).
+          Temporal and Space-Use Changes by Rats in Response to Predation by Feral Cats in an Urban Ecosystem.
+          <em>Frontiers in Ecology and Evolution</em>, 6:146.
+          <a href="https://doi.org/10.3389/fevo.2018.00146" target="_blank" rel="noopener">DOI</a>
+        </li>
+        <li>
+          Mahlaba, T. A. M., Monadjem, A., McCleery, R., &amp; Belmain, S. R. (2017).
+          Domestic cats and dogs create a landscape of fear for pest rodents around rural homesteads.
+          <em>PLOS ONE</em>, 12(2): e0171593.
+        </li>
+        <li>
+          Glass, G. E., et al. (2009). Trophic garnishes: Cat-rat interactions in an urban environment.
+          <em>PLOS ONE</em>.
+        </li>
+        <li>
+          Crawford, H. M., et al. (2025). The Cat Is Already Out of the Bag: Humane and Pragmatic Solutions for Cats on Dairy Farms.
+          <em>Animals</em>, 16(3):438.
+        </li>
+        <li>
+          Calver, M. C., et al. (2025). It's Premature to Encourage Working Cats for Rodent Control on Australian Dairy Farms.
+          <em>Animals</em>, 16(3):417.
+        </li>
+        <li>
+          McCleery, R. A., et al. (2017). Cats, dogs teaming up is best way to keep rodents away.
+          <em>Science Daily</em>.
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
      ALLY · 夥伴平台 · 見鼠地圖
      ============================================ -->
 <section id="ally" class="ally-section">
@@ -3106,27 +4935,21 @@ section {
       <h6>系統</h6>
       <ul>
         <li><a href="#platform">即時地圖</a></li>
-        <li><a href="#report">通報系統</a></li>
-        <li><a href="#analytics">數據儀表</a></li>
-        <li><a href="#">API 文件</a></li>
+        <li><a href="#report">公民通報</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h6>知識庫</h6>
+      <h6>論述</h6>
       <ul>
-        <li><a href="#onehealth">One Health</a></li>
-        <li><a href="#ipm">IPM 策略</a></li>
-        <li><a href="#">猛禽圖鑑</a></li>
-        <li><a href="#">鉤端螺旋體病</a></li>
+        <li><a href="#leftover">廚餘×鼠患</a></li>
+        <li><a href="#inquiry">街貓研究</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h6>夥伴</h6>
+      <h6>夥伴 & 聯絡</h6>
       <ul>
-        <li><a href="https://ratdar.taipei/" target="_blank">見鼠地圖</a></li>
-        <li><a href="https://data.taipei/" target="_blank">臺北市資料大平台</a></li>
-        <li><a href="https://www.cdc.gov.tw/" target="_blank">疾病管制署</a></li>
-        <li><a href="#">關於布妹</a></li>
+        <li><a href="https://ratdar.taipei/" target="_blank" rel="noopener">見鼠地圖 ↗</a></li>
+        <li><a href="https://forms.gle/f8mAFN8KkBYN6GKR8" target="_blank" rel="noopener">與我們聯絡 ↗</a></li>
       </ul>
     </div>
   </div>
@@ -3153,6 +4976,7 @@ section {
 import {
   fetchReports,
   insertReport,
+  uploadPhoto,
   subscribeToReports,
   timeAgo,
   USE_MOCK_DATA,
@@ -3180,6 +5004,7 @@ function normalizeReport(r) {
     sev: SEV_TO_NUM[r.severity] || 2,
     vol: r.daily_volume_tons ? `${r.daily_volume_tons} 公噸` : null,
     description: r.description || '',
+    photo_url: r.photo_url || null,
     created_at: r.created_at,
   };
 }
@@ -3311,11 +5136,15 @@ function makeIcon(type, sev) {
 // ============================================
 function buildPopupHtml(r) {
   const meta = typeMeta[r.type];
+  const photoHtml = r.photo_url
+    ? `<img src="${r.photo_url}" class="popup-photo" alt="通報照片" loading="lazy">`
+    : '';
   if (r.type === 'leftover') {
     return `
       <div class="pop-type">⚠ 廚餘暫置點 · 鼠患食源節點</div>
       <div class="pop-title">${r.title}</div>
       <div class="pop-meta">📍 ${r.loc}</div>
+      ${photoHtml}
       <div class="pop-meta" style="margin-top:6px;color:${meta.color};font-weight:600;">處理量:${r.vol || '—'} · ${r.time}</div>
       <div class="pop-meta" style="margin-top:6px;color:rgba(244,240,230,0.55);font-style:italic;">食源穩定 → 鼠群擴張基地</div>
     `;
@@ -3324,6 +5153,7 @@ function buildPopupHtml(r) {
     <div class="pop-type">${meta.label}</div>
     <div class="pop-title">${r.title}</div>
     <div class="pop-meta">${r.loc} · ${r.time}</div>
+    ${photoHtml}
     <div class="pop-meta" style="margin-top:6px;color:${meta.color};">嚴重程度:${'■'.repeat(r.sev)}${'□'.repeat(4-r.sev)}</div>
   `;
 }
@@ -3456,31 +5286,191 @@ const now = new Date();
 now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
 document.getElementById('timeInput').value = now.toISOString().slice(0, 16);
 
-// Geolocation
+// Geolocation - 手機 GPS 高精度定位
 function useGeolocation() {
   const status = document.getElementById('geoStatus');
+  const btn = document.querySelector('.geo-btn');
   if (!navigator.geolocation) {
     status.textContent = '⚠ 瀏覽器不支援地理定位';
     return;
   }
-  status.textContent = '正在取得您的位置...';
+  status.textContent = '◴ 正在取得您的位置(請允許定位權限)...';
+  status.style.color = 'var(--ink-soft)';
+  if (btn) btn.disabled = true;
+
   navigator.geolocation.getCurrentPosition(
     (pos) => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
+      const accuracy = Math.round(pos.coords.accuracy);
+
       document.getElementById('locationInput').value = `自動定位 (${lat.toFixed(5)}, ${lng.toFixed(5)})`;
-      // 把座標也存到 dataset,送出時可以直接用
       document.getElementById('locationInput').dataset.lat = lat;
       document.getElementById('locationInput').dataset.lng = lng;
-      status.textContent = `✓ 已取得位置:${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+
+      // 顯示精度,讓使用者知道位置可信度
+      let accuracyMsg = '';
+      if (accuracy <= 20) accuracyMsg = ' · 高精度';
+      else if (accuracy <= 100) accuracyMsg = ' · 中等精度';
+      else accuracyMsg = ' · 約略位置';
+
+      status.textContent = `✓ 已取得位置 (誤差 ±${accuracy}m${accuracyMsg})`;
       status.style.color = 'var(--moss)';
+      if (btn) btn.disabled = false;
       map.flyTo([lat, lng], 17, { duration: 1.5 });
     },
-    () => {
-      status.textContent = '⚠ 無法取得位置(請手動輸入)';
+    (err) => {
+      let msg = '⚠ 無法取得位置 · 請手動輸入';
+      if (err.code === err.PERMISSION_DENIED) {
+        msg = '⚠ 您拒絕了定位權限 · 請手動輸入位置或在地圖上點選';
+      } else if (err.code === err.TIMEOUT) {
+        msg = '⏰ 定位逾時 · 請確認 GPS 是否開啟';
+      }
+      status.textContent = msg;
       status.style.color = 'var(--clay)';
+      if (btn) btn.disabled = false;
+    },
+    {
+      enableHighAccuracy: true,  // 手機要求 GPS 而非 wifi 定位
+      timeout: 15000,            // 15 秒逾時
+      maximumAge: 30000          // 接受 30 秒前的快取
     }
   );
+}
+
+// ============================================
+// 照片上傳:選擇、壓縮、預覽、暫存
+// ============================================
+const MAX_PHOTO_BYTES = 1024 * 1024;       // 1 MB
+const MAX_PHOTO_DIMENSION = 1920;          // 最長邊 1920px
+
+(function setupPhotoUpload() {
+  const pickBtn = document.getElementById('photoPickBtn');
+  const photoInput = document.getElementById('photoInput');
+  const removeBtn = document.getElementById('photoRemoveBtn');
+  const uploadArea = document.getElementById('photoUploadArea');
+  const preview = document.getElementById('photoPreview');
+  const previewImg = document.getElementById('photoPreviewImg');
+  const previewMeta = document.getElementById('photoPreviewMeta');
+  const status = document.getElementById('photoStatus');
+
+  if (!pickBtn || !photoInput) return;
+
+  pickBtn.addEventListener('click', () => photoInput.click());
+
+  photoInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    // 1. 基本檢查
+    if (!file.type.startsWith('image/')) {
+      setStatus('⚠ 請選擇圖片檔', 'error');
+      return;
+    }
+
+    setStatus('◴ 處理中...', 'processing');
+    uploadArea.classList.remove('has-error');
+
+    try {
+      // 2. 壓縮
+      const compressed = await compressImage(file);
+
+      // 3. 預覽
+      const url = URL.createObjectURL(compressed);
+      previewImg.src = url;
+
+      const sizeKb = Math.round(compressed.size / 1024);
+      previewMeta.innerHTML = `
+        <span class="filename">${file.name}</span>
+        ${sizeKb} KB · 已最佳化
+      `;
+
+      preview.style.display = 'flex';
+      uploadArea.classList.add('has-photo');
+      setStatus('✓ 照片就緒,送出通報時將一併上傳', 'success');
+
+      // 4. 暫存到 window,讓 submitReport 取用
+      window.__pendingPhotoFile = compressed;
+    } catch (err) {
+      console.error('Photo processing failed:', err);
+      setStatus('⚠ 處理失敗:' + (err.message || '未知錯誤'), 'error');
+      uploadArea.classList.add('has-error');
+    }
+  });
+
+  if (removeBtn) {
+    removeBtn.addEventListener('click', () => {
+      photoInput.value = '';
+      preview.style.display = 'none';
+      uploadArea.classList.remove('has-photo', 'has-error');
+      setStatus('', '');
+      window.__pendingPhotoFile = null;
+    });
+  }
+
+  function setStatus(msg, type) {
+    if (!status) return;
+    status.textContent = msg;
+    status.className = 'photo-status' + (type ? ' ' + type : '');
+  }
+})();
+
+// ============================================
+// 圖片壓縮:用 Canvas resize 到最大 1920px、輸出 JPEG ~85% 品質
+// 目標檔案 < 1MB
+// ============================================
+async function compressImage(file) {
+  // 讀檔
+  const img = await loadImage(file);
+
+  // 計算 resize 尺寸
+  let { width, height } = img;
+  if (width > MAX_PHOTO_DIMENSION || height > MAX_PHOTO_DIMENSION) {
+    if (width > height) {
+      height = Math.round(height * MAX_PHOTO_DIMENSION / width);
+      width = MAX_PHOTO_DIMENSION;
+    } else {
+      width = Math.round(width * MAX_PHOTO_DIMENSION / height);
+      height = MAX_PHOTO_DIMENSION;
+    }
+  }
+
+  // Canvas 繪製
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, width, height);
+
+  // 嘗試從 0.85 品質開始,若仍太大就降到 0.7、0.55
+  for (const quality of [0.85, 0.7, 0.55, 0.4]) {
+    const blob = await canvasToBlob(canvas, 'image/jpeg', quality);
+    if (blob && blob.size <= MAX_PHOTO_BYTES) {
+      return new File([blob], renameToJpg(file.name), { type: 'image/jpeg' });
+    }
+  }
+
+  // 還是太大就用最低品質
+  const blob = await canvasToBlob(canvas, 'image/jpeg', 0.4);
+  return new File([blob], renameToJpg(file.name), { type: 'image/jpeg' });
+}
+
+function loadImage(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('無法讀取圖片')); };
+    img.src = url;
+  });
+}
+
+function canvasToBlob(canvas, type, quality) {
+  return new Promise((resolve) => canvas.toBlob(resolve, type, quality));
+}
+
+function renameToJpg(name) {
+  return (name || 'photo').replace(/\.(png|gif|webp|heic|heif)$/i, '') + '.jpg';
 }
 
 async function submitReport(e) {
@@ -3533,6 +5523,34 @@ async function submitReport(e) {
   submitBtn.disabled = true;
 
   try {
+    // ========== 步驟 1: 若有照片,先上傳 ==========
+    const photoFile = window.__pendingPhotoFile;
+    if (photoFile) {
+      submitBtn.innerHTML = '上傳照片中...';
+      const photoStatus = document.getElementById('photoStatus');
+      if (photoStatus) {
+        photoStatus.className = 'photo-status processing';
+        photoStatus.textContent = '◴ 上傳中...';
+      }
+      const { url, error: uploadErr } = await uploadPhoto(photoFile);
+      if (uploadErr) {
+        // 照片上傳失敗,但仍允許文字通報送出
+        console.warn('Photo upload failed, continuing without photo:', uploadErr);
+        if (photoStatus) {
+          photoStatus.className = 'photo-status error';
+          photoStatus.textContent = '⚠ 照片上傳失敗,將以無照片送出';
+        }
+      } else if (url) {
+        payload.photo_url = url;
+        if (photoStatus) {
+          photoStatus.className = 'photo-status success';
+          photoStatus.textContent = '✓ 照片上傳完成';
+        }
+      }
+      submitBtn.innerHTML = '送出中...';
+    }
+
+    // ========== 步驟 2: 寫入通報 ==========
     const { data, error, mock } = await insertReport(payload);
 
     const toast = document.getElementById('toast');
@@ -3563,6 +5581,16 @@ async function submitReport(e) {
       const now2 = new Date();
       now2.setMinutes(now2.getMinutes() - now2.getTimezoneOffset());
       document.getElementById('timeInput').value = now2.toISOString().slice(0, 16);
+      // 清除照片暫存
+      window.__pendingPhotoFile = null;
+      const uploadArea = document.getElementById('photoUploadArea');
+      const preview = document.getElementById('photoPreview');
+      const photoInput = document.getElementById('photoInput');
+      if (uploadArea) uploadArea.classList.remove('has-photo', 'is-uploading', 'has-error');
+      if (preview) preview.style.display = 'none';
+      if (photoInput) photoInput.value = '';
+      const photoStatusReset = document.getElementById('photoStatus');
+      if (photoStatusReset) { photoStatusReset.textContent = ''; photoStatusReset.className = 'photo-status'; }
     }
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3500);
@@ -3767,6 +5795,83 @@ const navObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
 
 // ============================================
+// Demo banner · 關閉公告
+// ============================================
+const demoBanner = document.getElementById('demoBanner');
+const demoBannerClose = document.getElementById('demoBannerClose');
+if (demoBanner && demoBannerClose) {
+  // 檢查使用者之前是否關閉過
+  try {
+    if (localStorage.getItem('ecosentinel-demo-banner-closed') === '1') {
+      demoBanner.style.display = 'none';
+    }
+  } catch(e) {}
+
+  demoBannerClose.addEventListener('click', () => {
+    demoBanner.style.display = 'none';
+    try { localStorage.setItem('ecosentinel-demo-banner-closed', '1'); } catch(e) {}
+  });
+}
+
+// ============================================
+// PWA · Service Worker 註冊
+// ============================================
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('[PWA] Service Worker registered, scope:', reg.scope))
+      .catch(err => console.warn('[PWA] Service Worker registration failed:', err));
+  });
+}
+
+// ============================================
+// PWA · 自訂安裝提示(Add to Home Screen)
+// ============================================
+let deferredInstallPrompt = null;
+const installBanner = document.getElementById('pwaInstallBanner');
+const installBtn = document.getElementById('pwaInstallBtn');
+const installDismiss = document.getElementById('pwaInstallDismiss');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  // 檢查使用者是否已關閉過提示
+  try {
+    if (localStorage.getItem('ecosentinel-install-dismissed') === '1') return;
+  } catch(err) {}
+  // 延遲 8 秒再顯示,避免一進站就跳出來打擾
+  setTimeout(() => {
+    if (installBanner) installBanner.classList.add('show');
+  }, 8000);
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') {
+      console.log('[PWA] User installed');
+    }
+    deferredInstallPrompt = null;
+    if (installBanner) installBanner.classList.remove('show');
+  });
+}
+
+if (installDismiss) {
+  installDismiss.addEventListener('click', () => {
+    if (installBanner) installBanner.classList.remove('show');
+    try { localStorage.setItem('ecosentinel-install-dismissed', '1'); } catch(err) {}
+  });
+}
+
+// 安裝完成後也隱藏 banner
+window.addEventListener('appinstalled', () => {
+  if (installBanner) installBanner.classList.remove('show');
+  console.log('[PWA] App installed');
+});
+
+// ============================================
 // Ally section · 見鼠地圖預覽展開/摺疊
 // ============================================
 const allyToggle = document.getElementById('allyToggleEmbed');
@@ -3786,6 +5891,22 @@ if (allyToggle && allyEmbed) {
   });
 }
 </script>
+
+<!-- ============================================
+     PWA INSTALL BANNER
+     (使用者瀏覽 8 秒後自動跳出,可關閉,localStorage 記憶)
+     ============================================ -->
+<div class="pwa-install-banner" id="pwaInstallBanner" role="dialog" aria-label="加到主畫面提示">
+  <div class="pwa-install-icon">E</div>
+  <div class="pwa-install-text">
+    <strong>加到主畫面</strong>
+    <span>離線可用,通報更快速</span>
+  </div>
+  <div class="pwa-install-actions">
+    <button class="pwa-install-btn-primary" id="pwaInstallBtn" type="button">安裝</button>
+    <button class="pwa-install-btn-dismiss" id="pwaInstallDismiss" type="button" aria-label="關閉提示">✕</button>
+  </div>
+</div>
 
 </body>
 </html>

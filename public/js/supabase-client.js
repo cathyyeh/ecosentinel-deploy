@@ -100,6 +100,48 @@ export async function insertReport(payload) {
 }
 
 // ============================================================================
+// API:上傳照片到 Supabase Storage
+// 回傳 public URL,可寫入 reports.photo_url
+// ============================================================================
+export async function uploadPhoto(file, onProgress) {
+  if (USE_MOCK_DATA) {
+    console.warn('[Mock mode] uploadPhoto simulated');
+    return { url: 'mock://photo/' + Date.now(), error: null, mock: true };
+  }
+
+  // 檔名:時間戳 + 隨機字串避免衝突
+  const ext = file.type === 'image/png' ? 'png' :
+              file.type === 'image/webp' ? 'webp' : 'jpg';
+  const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${ext}`;
+
+  if (typeof onProgress === 'function') onProgress(10);
+
+  const { data, error } = await supabase.storage
+    .from('report-photos')
+    .upload(filename, file, {
+      cacheControl: '3600',
+      upsert: false,
+      contentType: file.type,
+    });
+
+  if (error) {
+    console.error('[Supabase Storage] upload failed:', error);
+    return { url: null, error, mock: false };
+  }
+
+  if (typeof onProgress === 'function') onProgress(90);
+
+  // 取得 public URL
+  const { data: urlData } = supabase.storage
+    .from('report-photos')
+    .getPublicUrl(filename);
+
+  if (typeof onProgress === 'function') onProgress(100);
+
+  return { url: urlData.publicUrl, error: null, mock: false };
+}
+
+// ============================================================================
 // API:訂閱 realtime 新通報(讓地圖即時更新)
 // ============================================================================
 export function subscribeToReports(onInsert) {
@@ -185,7 +227,7 @@ function haversineMeters(lat1, lng1, lat2, lng2) {
 // ============================================================================
 function getMockReports() {
   return [
-    // 廚餘暫置點
+    // 廚餘暫置點(EcoSentinel 整理,部分查證中)
     { id: 'l1', type: 'leftover', lat: 25.0917, lng: 121.5050, title: '北投焚化廠 · 洲美露天區', location_name: '北投區洲美街 271 號', severity: 'critical', daily_volume_tons: 580, created_at: '2026-05-01T08:00:00Z' },
     { id: 'l2', type: 'leftover', lat: 24.9892, lng: 121.5685, title: '木柵堆肥場', location_name: '文山區木柵路五段', severity: 'high', daily_volume_tons: 25, created_at: '2026-05-01T08:00:00Z' },
     { id: 'l3', type: 'leftover', lat: 25.0490, lng: 121.5240, title: '大同清潔隊轉運站', location_name: '大同區昌吉街', severity: 'high', daily_volume_tons: 12, created_at: '2026-05-01T08:00:00Z' },
@@ -194,28 +236,14 @@ function getMockReports() {
     { id: 'l6', type: 'leftover', lat: 25.0680, lng: 121.5780, title: '內湖清潔隊轉運站', location_name: '內湖區行善路', severity: 'high', daily_volume_tons: 10, created_at: '2026-05-01T08:00:00Z' },
     { id: 'l7', type: 'leftover', lat: 25.0500, lng: 121.5780, title: '松山清潔隊轉運站', location_name: '松山區市民大道五段', severity: 'high', daily_volume_tons: 11, created_at: '2026-05-01T08:00:00Z' },
     { id: 'l8', type: 'leftover', lat: 25.0345, lng: 121.5680, title: '信義清潔隊轉運站(已改善)', location_name: '信義區忠孝東路五段', severity: 'medium', daily_volume_tons: 6, created_at: '2026-05-01T08:00:00Z' },
-    // 鼠患
-    { id: 'r1', type: 'rat', lat: 25.0330, lng: 121.5654, title: '信義商圈鼠跡', location_name: '信義區市府路', severity: 'high', created_at: '2026-05-05T09:30:00Z' },
-    { id: 'r2', type: 'rat', lat: 25.0418, lng: 121.5430, title: '中山市場周邊', location_name: '中山區雙城街', severity: 'critical', created_at: '2026-05-05T09:15:00Z' },
-    { id: 'r3', type: 'rat', lat: 25.0476, lng: 121.5170, title: '大同區巷弄', location_name: '大同區延平北路', severity: 'medium', created_at: '2026-05-05T08:45:00Z' },
-    { id: 'r4', type: 'rat', lat: 25.0275, lng: 121.5440, title: '師大夜市後巷', location_name: '大安區師大路', severity: 'high', created_at: '2026-05-05T07:30:00Z' },
-    { id: 'r5', type: 'rat', lat: 25.0586, lng: 121.5440, title: '士林市場', location_name: '士林區大東路', severity: 'critical', created_at: '2026-05-05T06:45:00Z' },
-    { id: 'r6', type: 'rat', lat: 25.0210, lng: 121.5340, title: '公館商圈下水道', location_name: '中正區羅斯福路', severity: 'high', created_at: '2026-05-05T05:30:00Z' },
-    { id: 'r7', type: 'rat', lat: 25.0390, lng: 121.5180, title: '萬華區夜市', location_name: '萬華區華西街', severity: 'critical', created_at: '2026-05-05T04:15:00Z' },
-    { id: 'r8', type: 'rat', lat: 25.0623, lng: 121.5230, title: '北投市場', location_name: '北投區光明路', severity: 'medium', created_at: '2026-05-05T03:00:00Z' },
-    // 街貓
+    // 街貓(社區實際 TNR 個體)
     { id: 'c1', type: 'cat', lat: 25.0340, lng: 121.5540, title: 'TNR 街貓「黑糖」', location_name: '大安區建國南路', severity: 'low', created_at: '2026-05-04T12:00:00Z' },
     { id: 'c2', type: 'cat', lat: 25.0440, lng: 121.5580, title: 'TNR 街貓「白米」', location_name: '中山區民生東路', severity: 'low', created_at: '2026-05-03T12:00:00Z' },
     { id: 'c3', type: 'cat', lat: 25.0480, lng: 121.5340, title: 'TNR 街貓「奶茶」', location_name: '中山區赤峰街', severity: 'low', created_at: '2026-05-02T12:00:00Z' },
     { id: 'c4', type: 'cat', lat: 25.0260, lng: 121.5380, title: 'TNR 街貓「布丁」', location_name: '中正區南海路', severity: 'low', created_at: '2026-04-30T12:00:00Z' },
     { id: 'c5', type: 'cat', lat: 25.0560, lng: 121.5180, title: 'TNR 街貓「咖啡」', location_name: '大同區寧夏路', severity: 'low', created_at: '2026-04-28T12:00:00Z' },
-    // 投藥
-    { id: 'p1', type: 'poison', lat: 25.0380, lng: 121.5470, title: '公園發現毒餌站', location_name: '大安區仁愛公園', severity: 'high', created_at: '2026-05-05T07:00:00Z' },
-    { id: 'p2', type: 'poison', lat: 25.0510, lng: 121.5390, title: '巷弄毒藥牌', location_name: '中山區建國北路', severity: 'medium', created_at: '2026-05-05T04:00:00Z' },
-    { id: 'p3', type: 'poison', lat: 25.0290, lng: 121.5510, title: '路面散落毒餌', location_name: '信義區基隆路', severity: 'critical', created_at: '2026-05-04T10:00:00Z' },
-    // 中毒/受傷
-    { id: 'i1', type: 'injured', lat: 25.0410, lng: 121.5390, title: '⚠ 疑似中毒夜鷺', location_name: '中山區新生公園', severity: 'critical', created_at: '2026-05-05T08:00:00Z' },
-    { id: 'i2', type: 'injured', lat: 25.0350, lng: 121.5640, title: '⚠ 街貓異常死亡', location_name: '信義區虎林街', severity: 'critical', created_at: '2026-05-04T10:00:00Z' },
+    // 即時鼠患通報請至見鼠地圖 ratdar.taipei
+    // 中毒/投藥事件:目前無資料(若你目擊請至見鼠地圖通報)
   ];
 }
 
