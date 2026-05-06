@@ -3,13 +3,20 @@
 
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/js/*", "/*.{css,scss,js,png,jpg,jpeg,gif,svg,ico,webp}"]
+    "exclude": [
+      "/js/*",
+      "/icons/*",
+      "/manifest.json",
+      "/sw.js",
+      "/*.{css,scss,js,png,jpg,jpeg,gif,svg,ico,webp,json}"
+    ]
   },
 
   "mimeTypes": {
     ".json": "application/json",
     ".js": "text/javascript",
-    ".mjs": "text/javascript"
+    ".mjs": "text/javascript",
+    ".webmanifest": "application/manifest+json"
   },
 
   "routes": [
@@ -17,6 +24,25 @@
       "route": "/js/config.js",
       "headers": {
         "cache-control": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "route": "/sw.js",
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate",
+        "service-worker-allowed": "/"
+      }
+    },
+    {
+      "route": "/manifest.json",
+      "headers": {
+        "cache-control": "public, max-age=3600"
+      }
+    },
+    {
+      "route": "/icons/*",
+      "headers": {
+        "cache-control": "public, max-age=86400"
       }
     },
     {

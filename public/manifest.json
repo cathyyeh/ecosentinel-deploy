@@ -1,0 +1,61 @@
+{
+  "name": "EcoSentinel · 生態守護系統",
+  "short_name": "EcoSentinel",
+  "description": "台北市生態守護平台:鼠患通報、街貓 TNR 巡守、廚餘節點地圖、IPM 整合管理",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f0e6",
+  "theme_color": "#1a2419",
+  "lang": "zh-TW",
+  "categories": ["news", "utilities", "social"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "立即通報",
+      "short_name": "通報",
+      "description": "送出新的通報資料",
+      "url": "/#report",
+      "icons": [{ "src": "/icons/shortcut-report.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "即時地圖",
+      "short_name": "地圖",
+      "description": "查看即時生態地圖",
+      "url": "/#platform",
+      "icons": [{ "src": "/icons/shortcut-map.png", "sizes": "96x96" }]
+    }
+  ]
+}
