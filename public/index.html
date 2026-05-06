@@ -15,6 +15,7 @@
 
 <!-- iOS Safari PWA 支援 -->
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="EcoSentinel">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -4278,8 +4279,8 @@ section {
         <div class="dash-map-wrap">
           <div id="leafletMap"></div>
           <div class="map-overlay-tl">
-            <div class="title">即時鼠患熱點地圖</div>
-            <div class="desc">點擊圖標查看詳情。可疊加<strong style="color:#d4a843;">廚餘暫置點</strong>觀察空間關聯,或開啟 AI 熱點分析。</div>
+            <div class="title">廚餘節點 × 街貓地圖</div>
+            <div class="desc">點擊 ◆ <strong style="color:#d4a843;">廚餘節點</strong> 看處理量;點擊 ● <strong style="color:#6b8e5a;">TNR 街貓</strong> 看在地巡守。即時鼠患通報請至 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">見鼠地圖 ↗</a>。</div>
           </div>
           <div class="map-overlay-br">
             ↗ 夥伴平台: <a href="#ally">見鼠地圖 Rat Radar</a>
@@ -4422,35 +4423,6 @@ section {
           <div class="form-row full">
             <label>詳細描述 / 附註</label>
             <textarea id="descInput" placeholder="請描述您看到的情況,例如數量、行為、環境衛生狀況等..."></textarea>
-          </div>
-
-          <div class="form-row full photo-row">
-            <label>
-              照片(選填)
-              <span class="optional-hint">· 上傳照片有助提高通報可信度</span>
-            </label>
-            <div class="photo-upload-area" id="photoUploadArea">
-              <input type="file"
-                     id="photoInput"
-                     accept="image/jpeg,image/png,image/webp"
-                     capture="environment"
-                     style="display:none;">
-              <button type="button" class="photo-pick-btn" id="photoPickBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                  <circle cx="12" cy="13" r="4"/>
-                </svg>
-                <span>拍照或選擇照片</span>
-              </button>
-              <div class="photo-preview" id="photoPreview" style="display:none;">
-                <img id="photoPreviewImg" alt="預覽">
-                <div class="photo-preview-info">
-                  <div class="photo-preview-meta" id="photoPreviewMeta"></div>
-                  <button type="button" class="photo-remove-btn" id="photoRemoveBtn">移除</button>
-                </div>
-              </div>
-              <div class="photo-status" id="photoStatus"></div>
-            </div>
           </div>
 
           <div class="form-row">
@@ -4980,7 +4952,6 @@ section {
 import {
   fetchReports,
   insertReport,
-  uploadPhoto,
   subscribeToReports,
   timeAgo,
   USE_MOCK_DATA,
@@ -5379,140 +5350,6 @@ function useGeolocation() {
   );
 }
 
-// ============================================
-// 照片上傳:選擇、壓縮、預覽、暫存
-// ============================================
-const MAX_PHOTO_BYTES = 1024 * 1024;       // 1 MB
-const MAX_PHOTO_DIMENSION = 1920;          // 最長邊 1920px
-
-(function setupPhotoUpload() {
-  const pickBtn = document.getElementById('photoPickBtn');
-  const photoInput = document.getElementById('photoInput');
-  const removeBtn = document.getElementById('photoRemoveBtn');
-  const uploadArea = document.getElementById('photoUploadArea');
-  const preview = document.getElementById('photoPreview');
-  const previewImg = document.getElementById('photoPreviewImg');
-  const previewMeta = document.getElementById('photoPreviewMeta');
-  const status = document.getElementById('photoStatus');
-
-  if (!pickBtn || !photoInput) return;
-
-  pickBtn.addEventListener('click', () => photoInput.click());
-
-  photoInput.addEventListener('change', async (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (!file) return;
-
-    // 1. 基本檢查
-    if (!file.type.startsWith('image/')) {
-      setStatus('⚠ 請選擇圖片檔', 'error');
-      return;
-    }
-
-    setStatus('◴ 處理中...', 'processing');
-    uploadArea.classList.remove('has-error');
-
-    try {
-      // 2. 壓縮
-      const compressed = await compressImage(file);
-
-      // 3. 預覽
-      const url = URL.createObjectURL(compressed);
-      previewImg.src = url;
-
-      const sizeKb = Math.round(compressed.size / 1024);
-      previewMeta.innerHTML = `
-        <span class="filename">${file.name}</span>
-        ${sizeKb} KB · 已最佳化
-      `;
-
-      preview.style.display = 'flex';
-      uploadArea.classList.add('has-photo');
-      setStatus('✓ 照片就緒,送出通報時將一併上傳', 'success');
-
-      // 4. 暫存到 window,讓 submitReport 取用
-      window.__pendingPhotoFile = compressed;
-    } catch (err) {
-      console.error('Photo processing failed:', err);
-      setStatus('⚠ 處理失敗:' + (err.message || '未知錯誤'), 'error');
-      uploadArea.classList.add('has-error');
-    }
-  });
-
-  if (removeBtn) {
-    removeBtn.addEventListener('click', () => {
-      photoInput.value = '';
-      preview.style.display = 'none';
-      uploadArea.classList.remove('has-photo', 'has-error');
-      setStatus('', '');
-      window.__pendingPhotoFile = null;
-    });
-  }
-
-  function setStatus(msg, type) {
-    if (!status) return;
-    status.textContent = msg;
-    status.className = 'photo-status' + (type ? ' ' + type : '');
-  }
-})();
-
-// ============================================
-// 圖片壓縮:用 Canvas resize 到最大 1920px、輸出 JPEG ~85% 品質
-// 目標檔案 < 1MB
-// ============================================
-async function compressImage(file) {
-  // 讀檔
-  const img = await loadImage(file);
-
-  // 計算 resize 尺寸
-  let { width, height } = img;
-  if (width > MAX_PHOTO_DIMENSION || height > MAX_PHOTO_DIMENSION) {
-    if (width > height) {
-      height = Math.round(height * MAX_PHOTO_DIMENSION / width);
-      width = MAX_PHOTO_DIMENSION;
-    } else {
-      width = Math.round(width * MAX_PHOTO_DIMENSION / height);
-      height = MAX_PHOTO_DIMENSION;
-    }
-  }
-
-  // Canvas 繪製
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(img, 0, 0, width, height);
-
-  // 嘗試從 0.85 品質開始,若仍太大就降到 0.7、0.55
-  for (const quality of [0.85, 0.7, 0.55, 0.4]) {
-    const blob = await canvasToBlob(canvas, 'image/jpeg', quality);
-    if (blob && blob.size <= MAX_PHOTO_BYTES) {
-      return new File([blob], renameToJpg(file.name), { type: 'image/jpeg' });
-    }
-  }
-
-  // 還是太大就用最低品質
-  const blob = await canvasToBlob(canvas, 'image/jpeg', 0.4);
-  return new File([blob], renameToJpg(file.name), { type: 'image/jpeg' });
-}
-
-function loadImage(file) {
-  return new Promise((resolve, reject) => {
-    const url = URL.createObjectURL(file);
-    const img = new Image();
-    img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
-    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('無法讀取圖片')); };
-    img.src = url;
-  });
-}
-
-function canvasToBlob(canvas, type, quality) {
-  return new Promise((resolve) => canvas.toBlob(resolve, type, quality));
-}
-
-function renameToJpg(name) {
-  return (name || 'photo').replace(/\.(png|gif|webp|heic|heif)$/i, '') + '.jpg';
-}
 
 async function submitReport(e) {
   e.preventDefault();
@@ -5564,34 +5401,7 @@ async function submitReport(e) {
   submitBtn.disabled = true;
 
   try {
-    // ========== 步驟 1: 若有照片,先上傳 ==========
-    const photoFile = window.__pendingPhotoFile;
-    if (photoFile) {
-      submitBtn.innerHTML = '上傳照片中...';
-      const photoStatus = document.getElementById('photoStatus');
-      if (photoStatus) {
-        photoStatus.className = 'photo-status processing';
-        photoStatus.textContent = '◴ 上傳中...';
-      }
-      const { url, error: uploadErr } = await uploadPhoto(photoFile);
-      if (uploadErr) {
-        // 照片上傳失敗,但仍允許文字通報送出
-        console.warn('Photo upload failed, continuing without photo:', uploadErr);
-        if (photoStatus) {
-          photoStatus.className = 'photo-status error';
-          photoStatus.textContent = '⚠ 照片上傳失敗,將以無照片送出';
-        }
-      } else if (url) {
-        payload.photo_url = url;
-        if (photoStatus) {
-          photoStatus.className = 'photo-status success';
-          photoStatus.textContent = '✓ 照片上傳完成';
-        }
-      }
-      submitBtn.innerHTML = '送出中...';
-    }
-
-    // ========== 步驟 2: 寫入通報 ==========
+    // 寫入通報
     const { data, error, mock } = await insertReport(payload);
 
     const toast = document.getElementById('toast');
@@ -5623,16 +5433,6 @@ async function submitReport(e) {
       const now2 = new Date();
       now2.setMinutes(now2.getMinutes() - now2.getTimezoneOffset());
       document.getElementById('timeInput').value = now2.toISOString().slice(0, 16);
-      // 清除照片暫存
-      window.__pendingPhotoFile = null;
-      const uploadArea = document.getElementById('photoUploadArea');
-      const preview = document.getElementById('photoPreview');
-      const photoInput = document.getElementById('photoInput');
-      if (uploadArea) uploadArea.classList.remove('has-photo', 'is-uploading', 'has-error');
-      if (preview) preview.style.display = 'none';
-      if (photoInput) photoInput.value = '';
-      const photoStatusReset = document.getElementById('photoStatus');
-      if (photoStatusReset) { photoStatusReset.textContent = ''; photoStatusReset.className = 'photo-status'; }
     }
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3500);
