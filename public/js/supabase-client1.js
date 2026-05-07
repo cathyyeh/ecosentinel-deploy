@@ -236,13 +236,12 @@ function getMockReports() {
     { id: 'l6', type: 'leftover', lat: 25.0680, lng: 121.5780, title: '內湖清潔隊轉運站', location_name: '內湖區行善路', severity: 'high', daily_volume_tons: 10, created_at: '2026-05-01T08:00:00Z' },
     { id: 'l7', type: 'leftover', lat: 25.0500, lng: 121.5780, title: '松山清潔隊轉運站', location_name: '松山區市民大道五段', severity: 'high', daily_volume_tons: 11, created_at: '2026-05-01T08:00:00Z' },
     { id: 'l8', type: 'leftover', lat: 25.0345, lng: 121.5680, title: '信義清潔隊轉運站(已改善)', location_name: '信義區忠孝東路五段', severity: 'medium', daily_volume_tons: 6, created_at: '2026-05-01T08:00:00Z' },
-    // 街貓(社區實際 TCCP 個體)
-    // 抽象描述風格 · 不公開精確位置(誤差 100-200m) · 故意不寫個性與餵食者
-    { id: 'c1', type: 'cat', lat: 25.0340, lng: 121.5540, title: '街貓「黑糖」', location_name: '大安區一帶', severity: 'low', tccp_completed: true, description: '橘色虎斑 · 左耳剪角 · 鄰居默契照顧', created_at: '2026-05-04T12:00:00Z' },
-    { id: 'c2', type: 'cat', lat: 25.0440, lng: 121.5580, title: '街貓「白米」', location_name: '中山區一帶', severity: 'low', tccp_completed: true, description: '白底灰斑 · 左耳剪角 · 社區照護中', created_at: '2026-05-03T12:00:00Z' },
-    { id: 'c3', type: 'cat', lat: 25.0480, lng: 121.5340, title: '街貓「奶茶」', location_name: '中山區一帶', severity: 'low', tccp_completed: true, description: '奶茶色虎斑 · 左耳剪角 · 老巷弄常駐', created_at: '2026-05-02T12:00:00Z' },
-    { id: 'c4', type: 'cat', lat: 25.0260, lng: 121.5380, title: '街貓「布丁」', location_name: '中正區一帶', severity: 'low', tccp_completed: true, description: '奶油色虎斑 · 左耳剪角 · 巷弄裡的長輩', created_at: '2026-04-30T12:00:00Z' },
-    { id: 'c5', type: 'cat', lat: 25.0560, lng: 121.5180, title: '街貓「咖啡」', location_name: '大同區一帶', severity: 'low', tccp_completed: true, description: '深棕長毛 · 左耳剪角 · 這條巷的長輩', created_at: '2026-04-28T12:00:00Z' },
+    // 街貓(社區實際 TNR 個體)
+    { id: 'c1', type: 'cat', lat: 25.0340, lng: 121.5540, title: 'TNR 街貓「黑糖」', location_name: '大安區建國南路', severity: 'low', created_at: '2026-05-04T12:00:00Z' },
+    { id: 'c2', type: 'cat', lat: 25.0440, lng: 121.5580, title: 'TNR 街貓「白米」', location_name: '中山區民生東路', severity: 'low', created_at: '2026-05-03T12:00:00Z' },
+    { id: 'c3', type: 'cat', lat: 25.0480, lng: 121.5340, title: 'TNR 街貓「奶茶」', location_name: '中山區赤峰街', severity: 'low', created_at: '2026-05-02T12:00:00Z' },
+    { id: 'c4', type: 'cat', lat: 25.0260, lng: 121.5380, title: 'TNR 街貓「布丁」', location_name: '中正區南海路', severity: 'low', created_at: '2026-04-30T12:00:00Z' },
+    { id: 'c5', type: 'cat', lat: 25.0560, lng: 121.5180, title: 'TNR 街貓「咖啡」', location_name: '大同區寧夏路', severity: 'low', created_at: '2026-04-28T12:00:00Z' },
     // 即時鼠患通報請至見鼠地圖 ratdar.taipei
     // 中毒/投藥事件:目前無資料(若你目擊請至見鼠地圖通報)
   ];

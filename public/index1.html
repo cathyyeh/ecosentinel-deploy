@@ -27,7 +27,7 @@
 <!-- Open Graph (社群分享預覽) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="EcoSentinel 生態守護系統">
-<meta property="og:description" content="台北鼠患通報、街貓 TCCP/TNR、廚餘節點地圖。從毒到精準,走向生態平衡。">
+<meta property="og:description" content="台北鼠患通報、街貓 TNR、廚餘節點地圖。從毒到精準,走向生態平衡。">
 <meta property="og:image" content="/icons/icon-512.png">
 <meta property="og:url" content="https://www.ecosentinel.tw">
 <meta property="og:locale" content="zh_TW">
@@ -1324,45 +1324,6 @@ section {
 }
 .hotspot-section .section-intro strong {
   color: var(--ink);
-}
-
-/* ===== 資料穩定性聲明(5/7 新增) ===== */
-.ha-stability {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 22px;
-  margin: 0 0 36px 0;
-  background: rgba(63, 107, 60, 0.08);
-  border-left: 3px solid var(--moss-bright);
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--ink-soft);
-}
-.ha-stability-icon {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  display: grid;
-  place-items: center;
-  background: var(--moss-bright);
-  color: var(--paper);
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 12px;
-  font-family: var(--mono);
-  margin-top: 2px;
-}
-.ha-stability-text strong {
-  color: var(--moss-deep);
-  font-weight: 700;
-}
-@media (max-width: 768px) {
-  .ha-stability {
-    padding: 14px 16px;
-    font-size: 13px;
-  }
 }
 
 /* ===== 三個關鍵發現 ===== */
@@ -2896,311 +2857,6 @@ section {
 }
 
 /* ============================================
-   TCCP · 在地實證子區塊
-   ============================================ */
-.tccp-block {
-  margin-top: 64px;
-  padding: 48px 56px;
-  background: linear-gradient(180deg, var(--paper-warm) 0%, rgba(63, 107, 60, 0.06) 100%);
-  border: 1px solid rgba(63, 107, 60, 0.18);
-  border-radius: 6px;
-}
-
-.tccp-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--moss-bright);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.tccp-title {
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  margin-bottom: 16px;
-}
-
-.tccp-intro {
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  margin-bottom: 36px;
-  max-width: 720px;
-}
-.tccp-intro strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-/* 大字累計 */
-.tccp-headline {
-  text-align: center;
-  padding: 32px 24px;
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 6px;
-  margin-bottom: 36px;
-}
-.tccp-headline-num {
-  font-family: var(--serif);
-  font-size: 84px;
-  font-weight: 800;
-  color: var(--amber);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  margin-bottom: 8px;
-}
-.tccp-headline-plus {
-  font-size: 56px;
-  margin-left: 4px;
-  color: rgba(212, 168, 67, 0.7);
-}
-.tccp-headline-label {
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--paper);
-  letter-spacing: 0.02em;
-  margin-bottom: 8px;
-}
-.tccp-headline-sub {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: rgba(244, 240, 230, 0.6);
-}
-
-/* 年度橫條圖 */
-.tccp-yearly h4 {
-  font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-.tccp-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.tccp-bar {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 14px;
-  align-items: center;
-  font-size: 12px;
-}
-.tccp-year {
-  font-family: var(--mono);
-  font-weight: 600;
-  color: var(--ink-soft);
-  text-align: right;
-  font-size: 11px;
-}
-.tccp-bar-track {
-  background: rgba(26, 36, 25, 0.06);
-  border-radius: 3px;
-  overflow: hidden;
-  height: 26px;
-  position: relative;
-}
-.tccp-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--moss), var(--moss-bright));
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 12px;
-  color: var(--paper);
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  transition: width 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
-  min-width: 60px;
-  white-space: nowrap;
-}
-.tccp-bar-peak .tccp-bar-fill {
-  background: linear-gradient(90deg, var(--moss-bright), var(--amber));
-  color: var(--ink);
-}
-.tccp-bars-note {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-soft);
-  font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 36px;
-}
-
-/* 引用框 */
-.tccp-quote {
-  background: var(--paper);
-  border-left: 4px solid var(--clay);
-  padding: 24px 28px;
-  border-radius: 0 6px 6px 0;
-  margin: 32px 0;
-}
-.tccp-quote-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--clay);
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-.tccp-quote blockquote {
-  font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.85;
-  color: var(--ink);
-  font-style: italic;
-  letter-spacing: -0.005em;
-  margin: 0 0 16px 0;
-}
-.tccp-quote blockquote strong {
-  font-weight: 700;
-  color: var(--clay-deep);
-  font-style: normal;
-  background: rgba(197, 85, 45, 0.08);
-  padding: 0 4px;
-  border-radius: 2px;
-}
-.tccp-quote-source {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-soft);
-  text-align: right;
-}
-.tccp-quote-source a {
-  color: var(--moss-bright);
-  text-decoration: none;
-  margin-left: 4px;
-  font-size: 14px;
-}
-.tccp-quote-source a:hover {
-  color: var(--moss-deep);
-}
-
-/* 結論 */
-.tccp-conclusion {
-  text-align: center;
-  margin: 36px 0 28px;
-  padding: 0 20px;
-}
-.tccp-conclusion-line {
-  width: 60px;
-  height: 2px;
-  background: var(--moss-bright);
-  margin: 0 auto 24px;
-}
-.tccp-conclusion p {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--ink);
-  margin-bottom: 16px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.tccp-conclusion p:last-child {
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--ink-soft);
-  font-style: italic;
-}
-.tccp-conclusion strong {
-  color: var(--moss-deep);
-  font-weight: 700;
-  font-style: normal;
-}
-
-/* 詳細資訊摺疊 */
-.tccp-details {
-  margin-top: 28px;
-  border-top: 1px solid rgba(26, 36, 25, 0.1);
-  padding-top: 20px;
-}
-.tccp-details summary {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--moss-bright);
-  cursor: pointer;
-  padding: 8px 0;
-  list-style: none;
-  user-select: none;
-}
-.tccp-details summary::-webkit-details-marker { display: none; }
-.tccp-details summary:hover { color: var(--moss-deep); }
-.tccp-details[open] summary { margin-bottom: 16px; }
-
-.tccp-details-body {
-  padding-top: 8px;
-}
-
-.tccp-detail-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-.tccp-detail-card {
-  padding: 16px 18px;
-  background: var(--paper);
-  border: 1px solid rgba(26, 36, 25, 0.08);
-  border-radius: 4px;
-}
-.tccp-detail-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-.tccp-detail-content {
-  font-family: var(--sans);
-  font-size: 13px;
-  line-height: 1.65;
-  color: var(--ink);
-}
-.tccp-detail-content strong {
-  color: var(--moss-deep);
-  font-weight: 700;
-}
-.tccp-detail-content small {
-  font-size: 11px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-  display: block;
-  margin-top: 4px;
-}
-
-@media (max-width: 768px) {
-  .tccp-block {
-    padding: 32px 24px;
-    margin-top: 40px;
-  }
-  .tccp-title { font-size: 22px; }
-  .tccp-headline { padding: 24px 16px; }
-  .tccp-headline-num { font-size: 60px; }
-  .tccp-headline-plus { font-size: 40px; }
-  .tccp-bar { grid-template-columns: 44px 1fr; gap: 10px; }
-  .tccp-year { font-size: 10px; }
-  .tccp-bar-track { height: 22px; }
-  .tccp-bar-fill { font-size: 10px; padding-right: 8px; min-width: 48px; }
-  .tccp-quote { padding: 18px 20px; }
-  .tccp-quote blockquote { font-size: 15px; line-height: 1.75; }
-  .tccp-conclusion p { font-size: 15px; }
-  .tccp-detail-grid { grid-template-columns: 1fr; }
-}
-
-/* ============================================
    ANALYTICS · Charts
    ============================================ */
 .analytics-section {
@@ -3757,7 +3413,7 @@ section {
   <strong>♢ 平台說明</strong>
   本站專注於<strong>廚餘×鼠患的政策論述</strong>與<strong>熱區因子分析</strong>。
   即時鼠患通報請至夥伴平台<a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;font-weight:600;">見鼠地圖 ↗</a>。
-  地圖上的廚餘節點為 EcoSentinel 自行整理(部分查證中),街貓為社區實際 TCCP/TNR 個體。
+  地圖上的廚餘節點為 EcoSentinel 自行整理(部分查證中),街貓為社區實際 TNR 個體。
   <button class="close" id="demoBannerClose" aria-label="關閉公告">✕</button>
 </div>
 
@@ -3851,7 +3507,7 @@ section {
     <div class="hero-stat">
       <div class="hero-stat-label">通報描述提到老舊建築 <span style="color:var(--moss);font-weight:700;">[實]</span></div>
       <div class="hero-stat-value">29.6<span class="unit">%</span></div>
-      <div class="hero-stat-trend" style="color:var(--ink-soft);">561 筆通報文字分析 · 最大成因線索</div>
+      <div class="hero-stat-trend" style="color:var(--ink-soft);">510 筆通報文字分析 · 最大成因線索</div>
     </div>
   </div>
 
@@ -3887,7 +3543,7 @@ section {
       <p>
         我住的社區裡,就有好幾隻被認養與照顧的街貓。
         鄰居們對牠們很好——有人在巷口放飲水盤,有人冬天放紙箱,
-        有人會默默結紮並帶回原地放養(TNR,在台北市稱 TCCP)。
+        有人會默默結紮並帶回原地放養(TNR)。
       </p>
 
       <div class="cat-list">
@@ -3904,7 +3560,7 @@ section {
           </span>
         </div>
         <div class="cat-list-note">
-          全部都做過 TCCP、剪了左耳。鄰居默契地一起照顧著。
+          全部都做過 TNR、剪了左耳。鄰居默契地一起照顧著。
         </div>
       </div>
 
@@ -4282,43 +3938,33 @@ section {
 
 <!-- ============================================
      HOTSPOT ANALYSIS · 鼠患因子分析
-     用見鼠地圖 561 筆台北市真實通報資料,做空間關聯與成因探究
+     用見鼠地圖 510 筆台北市真實通報資料,做空間關聯與成因探究
      ============================================ -->
 <section id="hotspot-analysis" class="hotspot-section">
   <div class="section-shell">
     <div class="section-eyebrow">▲ 數據分析 · 因子探究</div>
     <h2 class="section-title">熱區因子分析 · <em>鼠患從哪裡來?</em></h2>
     <p class="section-intro">
-      以見鼠地圖 <strong>561 筆台北市真實通報</strong>(2026/5/2–5/7)為基礎,結合 EcoSentinel 整理的 8 個廚餘節點座標,
+      以見鼠地圖 <strong>510 筆台北市真實通報</strong>(2026/5/1–5/6)為基礎,結合 EcoSentinel 整理的 8 個廚餘節點座標,
       做空間關聯分析。<strong>目的不是行銷,是探究成因</strong>——以利精準防治。
     </p>
-
-    <!-- ============ 資料穩定性聲明(新增) ============ -->
-    <div class="ha-stability">
-      <span class="ha-stability-icon">✓</span>
-      <span class="ha-stability-text">
-        <strong>結論已驗證</strong> · 5/6 第一版分析(510 筆)→ 5/7 更新(561 筆,+10%)後,
-        核心結論<strong>完全成立</strong>——3.3× 倍率不變、建築/管線維持第一、行政區排序維持。
-        新資料未推翻任何發現,代表樣本已達結構穩定。
-      </span>
-    </div>
 
     <!-- ============ 1. 三個關鍵發現(大字呈現) ============ -->
     <div class="ha-keyfindings">
       <div class="ha-kf-item">
         <div class="ha-kf-num">3.3<span class="ha-kf-unit">×</span></div>
         <div class="ha-kf-label">廚餘節點 1km 內鼠患密度</div>
-        <div class="ha-kf-sub">是其他區域的 3.3 倍 · 兩次更新均維持</div>
+        <div class="ha-kf-sub">是其他區域的 3.3 倍</div>
       </div>
       <div class="ha-kf-item">
-        <div class="ha-kf-num">28.9<span class="ha-kf-unit">%</span></div>
+        <div class="ha-kf-num">29.6<span class="ha-kf-unit">%</span></div>
         <div class="ha-kf-label">通報描述提到「老舊建築/管線」</div>
-        <div class="ha-kf-sub">穩定第一名 · 是最大成因線索</div>
+        <div class="ha-kf-sub">是最大成因線索</div>
       </div>
       <div class="ha-kf-item">
-        <div class="ha-kf-num">15<span class="ha-kf-unit">×</span></div>
+        <div class="ha-kf-num">12<span class="ha-kf-unit">×</span></div>
         <div class="ha-kf-label">行政區密度差距</div>
-        <div class="ha-kf-sub">信義 8.1 vs 北投 0.5 筆/km²</div>
+        <div class="ha-kf-sub">信義 7.2 vs 北投 0.5 筆/km²</div>
       </div>
     </div>
 
@@ -4333,22 +3979,21 @@ section {
         前段 6 區是核心都會區,後段 6 區大多包含山地或低開發強度區。
       </p>
       <div class="ha-bars">
-        <div class="ha-bar"><span class="ha-bar-label">信義區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:100%"><span>8.12</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">松山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:86.2%"><span>7.00</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">大安區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:75.9%"><span>6.16</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">中正區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:74.4%"><span>6.04</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">萬華區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:66.7%"><span>5.42</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">中山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:61.2%"><span>4.97</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">大同區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:47.7%"><span>3.87</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">內湖區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:12.1%"><span>0.98</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">文山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:11.0%"><span>0.89</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">南港區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:10.7%"><span>0.87</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">士林區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:8.5%"><span>0.69</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">北投區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:6.5%"><span>0.53</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">信義區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:100%"><span>7.23</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">松山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:90.9%"><span>6.57</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">大安區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:77.9%"><span>5.63</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">中正區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:76.4%"><span>5.52</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">萬華區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:67.2%"><span>4.86</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">中山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:60.7%"><span>4.39</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">大同區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:46.3%"><span>3.35</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">內湖區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:12.3%"><span>0.89</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">文山區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:11.9%"><span>0.86</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">南港區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:11.3%"><span>0.82</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">士林區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:8.7%"><span>0.63</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">北投區</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:6.8%"><span>0.49</span></div></div></div>
       </div>
       <div class="ha-card-foot">
-        筆/km² · 計算基礎:行政區公開面積。實際「人類活動面積」可能更小(山地、行水區),前段差距可能再被低估。<br>
-        <em>5/7 更新觀察</em>:松山區從第 3 升至第 2 (+0.43),大安第 2 →第 3 ——但前三名都在 6-8 筆/km² 區間,屬同一群。
+        筆/km² · 計算基礎:行政區公開面積。實際「人類活動面積」可能更小(山地、行水區),前段差距可能再被低估。
       </div>
     </div>
 
@@ -4365,30 +4010,30 @@ section {
 
       <div class="ha-radius-grid">
         <div class="ha-radius-cell">
-          <div class="ha-radius-num">7.1%</div>
-          <div class="ha-radius-text">通報集中於廚餘節點 <strong>0.5 km</strong> 內<br>(40 筆 / 561)</div>
+          <div class="ha-radius-num">6.5%</div>
+          <div class="ha-radius-text">通報集中於廚餘節點 <strong>0.5 km</strong> 內<br>(33 筆 / 510)</div>
         </div>
         <div class="ha-radius-cell highlight">
-          <div class="ha-radius-num">25.3%</div>
-          <div class="ha-radius-text">通報集中於廚餘節點 <strong>1 km</strong> 內<br>(142 筆 / 561)</div>
+          <div class="ha-radius-num">24.9%</div>
+          <div class="ha-radius-text">通報集中於廚餘節點 <strong>1 km</strong> 內<br>(127 筆 / 510)</div>
         </div>
         <div class="ha-radius-cell">
-          <div class="ha-radius-num">66.8%</div>
-          <div class="ha-radius-text">通報集中於廚餘節點 <strong>2 km</strong> 內<br>(375 筆 / 561)</div>
+          <div class="ha-radius-num">66.1%</div>
+          <div class="ha-radius-text">通報集中於廚餘節點 <strong>2 km</strong> 內<br>(337 筆 / 510)</div>
         </div>
       </div>
 
       <div class="ha-density">
         <div class="ha-density-half ha-density-near">
           <div class="ha-density-label">廚餘節點 1 km 內</div>
-          <div class="ha-density-num">5.7 <span>筆/km²</span></div>
-          <div class="ha-density-detail">142 筆 / 約 25 km²</div>
+          <div class="ha-density-num">5.1 <span>筆/km²</span></div>
+          <div class="ha-density-detail">127 筆 / 約 25 km²</div>
         </div>
         <div class="ha-density-vs">vs</div>
         <div class="ha-density-half ha-density-far">
           <div class="ha-density-label">廚餘節點 1 km 外</div>
-          <div class="ha-density-num">1.7 <span>筆/km²</span></div>
-          <div class="ha-density-detail">419 筆 / 約 247 km²</div>
+          <div class="ha-density-num">1.6 <span>筆/km²</span></div>
+          <div class="ha-density-detail">383 筆 / 約 247 km²</div>
         </div>
       </div>
       <div class="ha-density-conclusion">
@@ -4402,23 +4047,22 @@ section {
             <tr><th>節點</th><th>處理量</th><th>1km 內鼠患</th><th>觀察</th></tr>
           </thead>
           <tbody>
-            <tr><td>萬華清潔隊轉運站</td><td>14 t/d</td><td><strong>32</strong></td><td>都會密集巷弄</td></tr>
-            <tr><td>大同清潔隊轉運站</td><td>12 t/d</td><td>28</td><td>老舊住商混合</td></tr>
-            <tr><td>松山清潔隊轉運站</td><td>11 t/d</td><td>23</td><td>商圈密度高</td></tr>
-            <tr><td>大安清潔隊轉運站</td><td>15 t/d</td><td>22</td><td>市場+夜市</td></tr>
-            <tr><td>信義清潔隊轉運站</td><td>6 t/d</td><td>22</td><td>商圈+老巷</td></tr>
-            <tr><td>北投焚化廠 · 洲美露天區</td><td><strong>580 t/d</strong></td><td>8</td><td>處理量最大,但周邊住戶少</td></tr>
+            <tr><td>萬華清潔隊轉運站</td><td>14 t/d</td><td><strong>29</strong></td><td>都會密集巷弄</td></tr>
+            <tr><td>大同清潔隊轉運站</td><td>12 t/d</td><td>26</td><td>老舊住商混合</td></tr>
+            <tr><td>松山清潔隊轉運站</td><td>11 t/d</td><td>21</td><td>商圈密度高</td></tr>
+            <tr><td>大安清潔隊轉運站</td><td>15 t/d</td><td>19</td><td>市場+夜市</td></tr>
+            <tr><td>信義清潔隊轉運站</td><td>6 t/d</td><td>18</td><td>商圈+老巷</td></tr>
+            <tr><td>北投焚化廠 · 洲美露天區</td><td><strong>580 t/d</strong></td><td>7</td><td>處理量最大,但周邊住戶少</td></tr>
             <tr><td>內湖清潔隊轉運站</td><td>10 t/d</td><td>4</td><td>科技園區、人口分散</td></tr>
             <tr><td>木柵堆肥場</td><td>25 t/d</td><td>3</td><td>位於低開發強度區</td></tr>
           </tbody>
         </table>
         <p class="ha-finding">
           <span class="ha-finding-label">值得注意</span>
-          北投焚化廠處理量是其他節點的 50–100 倍,但 1km 內鼠患通報只 8 筆——
+          北投焚化廠處理量是其他節點的 50–100 倍,但 1km 內鼠患通報只 7 筆——
           意味著「<strong>處理量本身不是直接因子,鄰近人口密度與都市結構才是</strong>」。
           這提示精準防治的優先順序:應該優先處理「<strong>高密度都會區的小型清潔隊轉運站</strong>」,
-          而非以為「處理大廠周邊就最嚴重」。<br>
-          <em>5/7 更新:</em>萬華站 1km 內從 29 → 32 筆,維持 8 節點之首。北投廠仍只有 8 筆,反例持續成立。
+          而非以為「處理大廠周邊就最嚴重」。
         </p>
       </div>
     </div>
@@ -4430,29 +4074,27 @@ section {
         <h3>通報描述關鍵字 · 成因線索</h3>
       </div>
       <p class="ha-card-desc">
-        從 561 筆通報的「說明」文字提取關鍵字,看通報者實際描述的環境特徵。
+        從 510 筆通報的「說明」文字提取關鍵字,看通報者實際描述的環境特徵。
         這些不是統計上的成因(相關不等於因果),但能揭示<strong>市民眼中的鼠患現場樣貌</strong>。
       </p>
       <div class="ha-bars ha-bars-keyword">
-        <div class="ha-bar"><span class="ha-bar-label">建築/管線</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:100%"><span>28.9%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">公園綠地</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:48.8%"><span>14.1%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">廚餘垃圾</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:43.9%"><span>12.7%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">排水/下水道</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:40.8%"><span>11.8%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">住家</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:29.8%"><span>8.6%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">市場</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:20.4%"><span>5.9%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">車站交通</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:14.9%"><span>4.3%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">餐飲</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:12.8%"><span>3.7%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">學校</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:4.2%"><span>1.2%</span></div></div></div>
-        <div class="ha-bar"><span class="ha-bar-label">醫院</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:1.7%"><span>0.5%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">建築/管線</span><div class="ha-bar-track"><div class="ha-bar-fill bar-hot" style="width:100%"><span>29.6%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">公園綠地</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:48.3%"><span>14.3%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">排水/下水道</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:41.2%"><span>12.2%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">廚餘垃圾</span><div class="ha-bar-track"><div class="ha-bar-fill bar-warm" style="width:39.9%"><span>11.8%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">住家</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:27.7%"><span>8.2%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">市場</span><div class="ha-bar-track"><div class="ha-bar-fill bar-mid" style="width:19.9%"><span>5.9%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">車站交通</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:14.5%"><span>4.3%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">餐飲</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:12.5%"><span>3.7%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">學校</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:4.7%"><span>1.4%</span></div></div></div>
+        <div class="ha-bar"><span class="ha-bar-label">醫院</span><div class="ha-bar-track"><div class="ha-bar-fill bar-cool" style="width:2.0%"><span>0.6%</span></div></div></div>
       </div>
       <p class="ha-finding">
         <span class="ha-finding-label">與直覺不符的發現</span>
-        市場僅佔 5.9%、餐飲 3.7%——遠低於直覺認知。<strong>最大的成因線索是「老舊建築與管線」(28.9%)</strong>,
+        市場僅佔 5.9%、餐飲 3.7%——遠低於直覺認知。<strong>最大的成因線索是「老舊建築與管線」(29.6%)</strong>,
         這跟生態學文獻中「<em>棲息地結構>食源</em>」的主張一致:
         老鼠是高度適應人造環境的動物,管線、牆縫、天花板提供安全棲息地,才是無法移除的核心因子。
-        這提示防治方向不只是「清除食源」,更要從<strong>建築修繕</strong>(封堵縫隙、管線整治)切入。<br>
-        <em>5/7 更新觀察:</em>「廚餘垃圾」關鍵字從 #4 升至 #3 (11.8% → 12.7%),
-        擠下「排水/下水道」。可能反映民眾對食源關聯的意識升高,值得後續追蹤。
+        這提示防治方向不只是「清除食源」,更要從<strong>建築修繕</strong>(封堵縫隙、管線整治)切入。
       </p>
     </div>
 
@@ -4460,7 +4102,7 @@ section {
     <div class="ha-limits">
       <h4>▲ 方法論限制聲明</h4>
       <ul>
-        <li><strong>時間樣本短:</strong>僅 6 天通報期(2026/5/2–5/7)。可能受特定事件或新聞報導影響,不能代表長期趨勢。</li>
+        <li><strong>時間樣本短:</strong>僅 6 天通報期(2026/5/1–5/6)。可能受特定事件或新聞報導影響,不能代表長期趨勢。</li>
         <li><strong>通報偏誤(Report Bias):</strong>「通報多 ≠ 鼠患多」。信義/大安通報密集,可能反映「住戶網路熟悉度」而非實際密度。</li>
         <li><strong>相關不是因果:</strong>廚餘節點與鼠患在空間上有關聯,但無法證明廚餘是直接成因。可能兩者都是「人口密度高、都市老舊」這個共同因子的結果。</li>
         <li><strong>廚餘節點清單不完整:</strong>本分析使用 EcoSentinel 自行整理的 8 個節點(2 個 100% 確認、6 個查證中)。實際垃圾收集點、廚餘暫存定點未納入。</li>
@@ -4473,9 +4115,9 @@ section {
         歡迎透過<a href="https://forms.gle/f8mAFN8KkBYN6GKR8" target="_blank" rel="noopener">聯絡表單</a>聯繫。
       </p>
       <p class="ha-data-attribution">
-        資料來源:<a href="https://ratdar.taipei/" target="_blank" rel="noopener">見鼠地圖 ratdar.taipei</a> 公開通報(2026/5/2–5/7,561 筆台北市資料) ·
+        資料來源:<a href="https://ratdar.taipei/" target="_blank" rel="noopener">見鼠地圖 ratdar.taipei</a> 公開通報(2026/5/1–5/6,510 筆台北市資料) ·
         分析方法:Haversine 球面距離 + 文字關鍵字頻次 ·
-        最後更新:2026/5/7
+        最後更新:2026/5/6
       </p>
     </div>
 
@@ -4529,7 +4171,7 @@ section {
           保護街貓、猛禽、家中寵物免於二級中毒,維護天敵族群作為鼠患的自然抑制力量。
         </p>
         <ul>
-          <li>TCCP 街貓族群管理與健康追蹤</li>
+          <li>TNR 街貓族群管理與健康追蹤</li>
           <li>猛禽中毒事件通報與救援</li>
           <li>寵物毒餌風險警示</li>
         </ul>
@@ -4561,10 +4203,10 @@ section {
 <section id="platform" class="platform-section">
   <div class="section-shell">
     <div class="section-eyebrow">▲ 廚餘節點 × 街貓地圖</div>
-    <h2 class="section-title">用空間,理解食源結構。<em>廚餘暫置點 × TCCP 街貓 × 通報入口。</em></h2>
+    <h2 class="section-title">用空間,理解食源結構。<em>廚餘暫置點 × TNR 街貓 × 通報入口。</em></h2>
     <p class="section-intro">
       這張地圖呈現 EcoSentinel 整理的 <strong>8 個廚餘節點</strong>(食源結構)、
-      社區實際的 <strong>5 隻 TCCP 街貓</strong>(Taipei Cat Care Programme,生物防治參考),以及 <strong>公民通報入口</strong>。
+      社區實際的 <strong>5 隻 TNR 街貓</strong>(生物防治參考),以及 <strong>公民通報入口</strong>。
       <br><br>
       ⓘ 即時鼠患通報請至夥伴平台 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:var(--moss-bright);font-weight:600;border-bottom:1px dotted var(--moss-bright);text-decoration:none;">見鼠地圖 ratdar.taipei ↗</a>——
       EcoSentinel 補政策視角,不分散通報能量。
@@ -4577,7 +4219,7 @@ section {
         <span class="path">/ ecosentinel.tw / map</span>
         <div class="meta-right">
           <span>• 8 個廚餘節點</span>
-          <span>• 5 隻 TCCP 街貓</span>
+          <span>• 5 隻 TNR 街貓</span>
           <span>• 公民通報持續累積</span>
         </div>
       </div>
@@ -4593,7 +4235,7 @@ section {
           </div>
           <div class="layer-toggle active" data-layer="cats">
             <div class="swatch" style="background:#6b8e5a;"></div>
-            <span>TCCP 街貓</span>
+            <span>TNR 街貓</span>
             <span class="count" id="count-cats">5</span>
           </div>
           <div class="layer-toggle active" data-layer="rats">
@@ -4638,7 +4280,7 @@ section {
           <div id="leafletMap"></div>
           <div class="map-overlay-tl">
             <div class="title">廚餘節點 × 街貓地圖</div>
-            <div class="desc">點擊 ◆ <strong style="color:#d4a843;">廚餘節點</strong> 看處理量;點擊 ● <strong style="color:#6b8e5a;">TCCP 街貓</strong> 看在地巡守。即時鼠患通報請至 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">見鼠地圖 ↗</a>。</div>
+            <div class="desc">點擊 ◆ <strong style="color:#d4a843;">廚餘節點</strong> 看處理量;點擊 ● <strong style="color:#6b8e5a;">TNR 街貓</strong> 看在地巡守。即時鼠患通報請至 <a href="https://ratdar.taipei/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">見鼠地圖 ↗</a>。</div>
           </div>
           <div class="map-overlay-br">
             ↗ 夥伴平台: <a href="#ally">見鼠地圖 Rat Radar</a>
@@ -4695,7 +4337,7 @@ section {
             </svg>
           </div>
           <div class="type-name">街貓</div>
-          <div class="type-desc">登錄街貓族群、TCCP/TNR 狀態</div>
+          <div class="type-desc">登錄街貓族群、TNR 狀態或活動</div>
         </div>
         <div class="type-card t-poison" data-type="poison">
           <div class="type-icon">
@@ -5135,128 +4777,6 @@ section {
         </li>
       </ol>
     </div>
-
-    <!-- ============================================
-         TCCP 在地實證子區塊
-         ============================================ -->
-    <div class="tccp-block">
-      <div class="tccp-eyebrow">✦ 在地實證 · 不是國外研究,是台北市自己的政策</div>
-      <h3 class="tccp-title">台北市 TCCP 11 年數據</h3>
-      <p class="tccp-intro">
-        台北市並非「沒做事」。動保處從民國 103 年起執行
-        <strong>TCCP(街貓友善照護行動方案,Taipei Cat Care Programme)</strong>,
-        是 TNR 的升級版——絕育之後加上後續社區友善照護。
-        以下是動保處公開的 11 年實際執行數據。
-      </p>
-
-      <!-- 累計大字 -->
-      <div class="tccp-headline">
-        <div class="tccp-headline-num">35,000<span class="tccp-headline-plus">+</span></div>
-        <div class="tccp-headline-label">隻 街貓累計絕育</div>
-        <div class="tccp-headline-sub">11 年(103–113)·全市 12 行政區 · 含民間自費另約 3,654 隻</div>
-      </div>
-
-      <!-- 年度橫條圖 -->
-      <div class="tccp-yearly">
-        <h4>年度絕育數量(政府補助)</h4>
-        <div class="tccp-bars">
-          <div class="tccp-bar"><span class="tccp-year">103年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:74.7%"><span>2,797</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">104年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:75.9%"><span>2,843</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">105年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:75.7%"><span>2,835</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">106年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:78.6%"><span>2,941</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">107年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:83.7%"><span>3,132</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">108年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:94.8%"><span>3,548</span></div></div></div>
-          <div class="tccp-bar tccp-bar-peak"><span class="tccp-year">109年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:100%"><span>3,743 ⬅ 高峰</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">110年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:90.7%"><span>3,393</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">111年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:88.2%"><span>3,300</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">112年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:86.2%"><span>3,228</span></div></div></div>
-          <div class="tccp-bar"><span class="tccp-year">113年</span><div class="tccp-bar-track"><div class="tccp-bar-fill" style="width:84.2%"><span>3,150</span></div></div></div>
-        </div>
-        <div class="tccp-bars-note">
-          → 11 年穩定維持每年 3,000+ 隻的執行強度。最高峰 109 年(2020)達 3,743 隻。
-        </div>
-      </div>
-
-      <!-- 政府原話引用 -->
-      <div class="tccp-quote">
-        <div class="tccp-quote-eyebrow">政府自己怎麼說?</div>
-        <blockquote>
-          「<strong>撲殺街貓無用的原因,在於『真空效應』(vacuum effect)</strong>,
-          即使短期間內將該社區的街貓全數移除,周遭區域的街貓會受到食物及地盤吸引,
-          再加上無競爭者的阻擋,毫無費力的就可以進駐這塊區域。
-          另外在食物鏈的環節上,<strong>若將街貓從食物鏈中移出,則老鼠、蟑螂等
-          人們更難以防堵的生物,亦將大量繁殖</strong>。」
-        </blockquote>
-        <div class="tccp-quote-source">
-          ——台北市動物保護處 · TCCP 計畫官方說明
-          <a href="https://www.tcapo.gov.taipei/cp.aspx?n=EF17C50DFE5643D1" target="_blank" rel="noopener">↗</a>
-        </div>
-      </div>
-
-      <!-- 結論 -->
-      <div class="tccp-conclusion">
-        <div class="tccp-conclusion-line"></div>
-        <p>
-          這不是 EcoSentinel 的論述。<br>
-          <strong>這是台北市政府寫在自己政策文件裡的論述。</strong>
-        </p>
-        <p>
-          投藥滅鼠 + 同時移走街貓 = 政府自己在文件中明文反對的做法。
-          如果要做 IPM 整合管理,街貓必須是其中一環,而不是被同時消除的對象。
-        </p>
-      </div>
-
-      <!-- 補助結構與合作協會(可摺疊) -->
-      <details class="tccp-details">
-        <summary>補助結構與合作協會 ▾</summary>
-        <div class="tccp-details-body">
-          <div class="tccp-detail-grid">
-            <div class="tccp-detail-card">
-              <div class="tccp-detail-label">公費補助標準</div>
-              <div class="tccp-detail-content">
-                公貓 NT$ <strong>1,600</strong> /隻<br>
-                母貓 NT$ <strong>3,100</strong> /隻<br>
-                <small>含耳號註記、晶片植入、狂犬病疫苗、除蚤、絕育手術、術後照護</small>
-              </div>
-            </div>
-            <div class="tccp-detail-card">
-              <div class="tccp-detail-label">執行範圍</div>
-              <div class="tccp-detail-content">
-                113 年(2024)<strong>全市 12 行政區執行</strong><br>
-                <small>歷年累計覆蓋 200+ 個里 + 數個社區及學校</small>
-              </div>
-            </div>
-            <div class="tccp-detail-card">
-              <div class="tccp-detail-label">主要合作協會(歷年)</div>
-              <div class="tccp-detail-content">
-                <small>
-                  · 臺北市流浪貓保護協會<br>
-                  · 社團法人臺北市支持流浪貓絕育計劃協會<br>
-                  · 社團法人台灣愛貓協會<br>
-                  · 台灣懷生相信動物協會<br>
-                  · 社團法人台灣動物平權促進會<br>
-                  · 北投區石牌社區發展協會
-                </small>
-              </div>
-            </div>
-            <div class="tccp-detail-card">
-              <div class="tccp-detail-label">與 TNR 的差別</div>
-              <div class="tccp-detail-content">
-                <strong>TCCP = TNR + 後續友善照護</strong><br>
-                <small>
-                  TNR 強調絕育回置,
-                  TCCP 還包括清潔衛生(乾淨餵食、不餵廚餘)、
-                  防疫(疫苗、除蚤)、
-                  數量持續控制與社區溝通。
-                </small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </details>
-
-    </div>
-
   </div>
 </section>
 
@@ -5460,7 +4980,6 @@ function normalizeReport(r) {
     vol: r.daily_volume_tons ? `${r.daily_volume_tons} 公噸` : null,
     description: r.description || '',
     photo_url: r.photo_url || null,
-    tccp_completed: r.tccp_completed === true,
     created_at: r.created_at,
   };
 }
@@ -5618,8 +5137,6 @@ function buildPopupHtml(r) {
   const photoHtml = r.photo_url
     ? `<img src="${r.photo_url}" class="popup-photo" alt="通報照片" loading="lazy">`
     : '';
-
-  // 廚餘節點:強調食源、處理量
   if (r.type === 'leftover') {
     return `
       <div class="pop-type">⚠ 廚餘暫置點 · 鼠患食源節點</div>
@@ -5630,27 +5147,6 @@ function buildPopupHtml(r) {
       <div class="pop-meta" style="margin-top:6px;color:rgba(244,240,230,0.55);font-style:italic;">食源穩定 → 鼠群擴張基地</div>
     `;
   }
-
-  // 街貓:不顯示嚴重程度,改顯示 TCCP 標記與抽象描述
-  if (r.type === 'cat') {
-    const tccpBadge = r.tccp_completed
-      ? `<div class="pop-meta" style="margin-top:8px;color:#a3c285;font-weight:600;letter-spacing:0.04em;">✂ TCCP 已完成 · 左耳剪角</div>`
-      : '';
-    const descHtml = r.description
-      ? `<div class="pop-meta" style="margin-top:8px;color:rgba(244,240,230,0.75);font-style:italic;line-height:1.6;">${r.description}</div>`
-      : '';
-    return `
-      <div class="pop-type">${meta.label}</div>
-      <div class="pop-title">${r.title}</div>
-      <div class="pop-meta">${r.loc}</div>
-      ${photoHtml}
-      ${descHtml}
-      ${tccpBadge}
-      <div class="pop-meta" style="margin-top:8px;color:rgba(244,240,230,0.45);font-size:11px;font-family:var(--mono);">位置經模糊化處理 · 為保護街貓不公開精確座標</div>
-    `;
-  }
-
-  // 其他通報類型(rat/poison/injured/leftover 以外):用通用版本
   return `
     <div class="pop-type">${meta.label}</div>
     <div class="pop-title">${r.title}</div>
@@ -5720,7 +5216,7 @@ map.on('click', (e) => {
 const feedListEl = document.getElementById('feedList');
 
 // 過濾出真正屬於「動態」的資料(廚餘是靜態節點,不放在動態 feed)
-const feedReports = reports.filter(r => r.type !== 'leftover' && r.type !== 'cat');
+const feedReports = reports.filter(r => r.type !== 'leftover');
 
 if (feedReports.length === 0) {
   feedListEl.innerHTML = `

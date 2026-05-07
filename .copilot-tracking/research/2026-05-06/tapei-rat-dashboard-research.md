@@ -42,6 +42,12 @@ Research for building a web dashboard to analyze urban rat distribution and prev
 * Environmental factors affecting rat populations
   * Reasoning: Climate, waste management, urban planning impacts
   * Reference: Taipei environmental reports
+* Implementation of K-Dense scientific agent skills for population modeling
+  * Reasoning: Use GeoMaster, PyMC, aeon, scikit-learn to enhance dashboard capabilities
+  * Reference: .copilot-tracking/research/2026-05-06/urban-rats-prevention-skills-research.md
+* Custom agent skill development for rodent population prediction
+  * Reasoning: Build specialized skills for Taipei-specific rat ecology data
+  * Reference: K-Dense-AI/scientific-agent-skills repository framework
 
 ## Research Executed
 
@@ -142,4 +148,132 @@ Dashboard Structure:
 * GIS software: Too complex for web dashboard
 * Static reports: Lacks interactivity
 * Government APIs: Limited availability
+
+### Enhanced Urban Rat Population Modeling with K-Dense Scientific Skills
+
+**Requirements:**
+
+* Scientific population dynamics modeling
+* Predictive forecasting of rat population trends
+* Spatial habitat analysis and risk mapping
+* Bayesian uncertainty quantification for predictions
+
+**Preferred Approach:**
+
+* Integrate K-Dense Scientific Agent Skills for data-driven analysis:
+  * **GeoMaster**: Spatial analysis of urban environments to identify rat habitats and track population spread using satellite and urban planning data
+  * **PyMC**: Bayesian modeling of rat population dynamics with uncertainty quantification
+  * **aeon**: Time series forecasting of population trends and anomaly detection
+  * **scikit-learn**: Machine learning models for infestation risk prediction based on environmental factors
+
+```text
+Enhanced Dashboard Architecture:
+├── Data Layer (Supabase)
+│   ├── Reports (citizen submissions)
+│   ├── Environmental factors (temp, humidity, food sources)
+│   └── Urban planning data (parks, waste sites, buildings)
+├── AI Agent Skills Layer
+│   ├── GeoMaster (habitat mapping)
+│   ├── PyMC (population modeling)
+│   ├── aeon (trend forecasting)
+│   └── scikit-learn (risk prediction)
+├── Analysis & Insights
+│   ├── Population forecasts
+│   ├── Hotspot predictions
+│   ├── Habitat vulnerability maps
+│   └── Prevention effectiveness metrics
+└── Visualization Layer
+    ├── Interactive map (current + predicted hotspots)
+    ├── Population trend charts
+    ├── Risk heatmaps
+    └── Scenario analysis dashboards
+```
+
+**Implementation Details:**
+
+* Connect Supabase data to PyMC for Bayesian population modeling
+* Use GeoMaster for satellite imagery analysis of green spaces and potential habitats
+* Apply aeon time series algorithms to forecast population growth patterns
+* Deploy scikit-learn models to predict high-risk areas based on environmental features
+* Visualize predictions and uncertainty bounds in interactive maps and charts
+* Enable scenario analysis (e.g., "what if rat control measures increase by 20%?")
+
+**Integration Strategy:**
+
+1. Start with basic dashboards (reports visualization, hotspot mapping)
+2. Layer in scikit-learn predictive models for risk scoring
+3. Add aeon time series forecasting for trend prediction
+4. Implement PyMC Bayesian models for population dynamics
+5. Integrate GeoMaster for spatial habitat analysis (requires satellite data access)
+
+**Expected Outcomes:**
+
+* Replace 12-year data gap with AI-driven population estimates
+* Provide scientific foundation for prevention policy recommendations
+* Enable proactive instead of reactive rat control measures
+* Support "科學" (scientific) approach mentioned in the original article
+
+#### Considered Alternatives for Skills Integration
+
+* Manual statistical analysis: Less sophisticated, slower, limited to past data
+* Simple ML models only: No uncertainty quantification, weaker population dynamics
+* No scientific modeling: Returns to current approach of only using complaint data
+
+## Selected Approach
+
+**Integrated Solution: AI-Enhanced Rat Distribution Dashboard for Taipei**
+
+The dashboard combines your existing Supabase infrastructure with K-Dense Scientific Agent Skills to provide data-driven rat prevention capabilities:
+
+### Technology Stack
+
+```
+Frontend: Vanilla JS + Leaflet/Mapbox (existing setup)
+Backend: Supabase + Python microservices for AI agents
+AI Skills: GeoMaster (spatial), PyMC (Bayesian modeling), aeon (forecasting), scikit-learn (prediction)
+Deployment: Azure Static Web Apps (existing)
+```
+
+### Core Features
+
+1. **Real-time Reporting Dashboard** (Phase 1 - Existing)
+   - Map visualization of citizen reports
+   - Report filtering and hotspot identification
+   - Basic statistics and trends
+
+2. **Predictive Analytics** (Phase 2 - AI Skills Layer)
+   - scikit-learn: Risk scoring for districts based on environmental factors
+   - aeon: Population trend forecasting with 1-3 month predictions
+   - PyMC: Bayesian population dynamics models with uncertainty bounds
+
+3. **Spatial Intelligence** (Phase 3 - Advanced)
+   - GeoMaster: Habitat suitability mapping using satellite imagery
+   - Integration of urban planning data (parks, waste sites, building density)
+   - Vulnerability assessment for different city districts
+
+4. **Prevention Strategy Support**
+   - Scenario modeling ("if control intensity increases by X%")
+   - Evidence-based recommendations for resource allocation
+   - Progress tracking against population targets
+
+### Why This Approach
+
+* **Addresses Taipei's Gap**: Replaces missing scientific surveys with AI-driven population estimates
+* **Aligns with Article's Call**: Implements the "科學" (scientific) and "專業" (professional) approach requested
+* **Leverages Existing Assets**: Uses current Supabase setup and Azure deployment
+* **Phased Implementation**: Starts simple, adds sophistication incrementally
+* **Actionable Insights**: Provides city planners with evidence for policy decisions
+
+### Rationale Over Alternatives
+
+- **vs. Manual Analysis**: Scientific algorithms provide superior pattern recognition and forecasting
+- **vs. Simple Dashboards**: Bayesian and ML models enable uncertainty quantification and scenario testing
+- **vs. Government-Only Data**: Combines citizen reports with environmental and spatial analysis for comprehensive view
+
+### Success Metrics
+
+- Population estimates align with periodic validation surveys
+- Hotspot predictions match actual reports 2-4 weeks in advance
+- Risk model achieves 75%+ accuracy on held-out test data
+- Policy makers adopt recommendations based on dashboard insights
 
